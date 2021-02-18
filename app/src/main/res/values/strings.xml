@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">KoKaiByWGO</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="please_wait">Please Wait ...</string>
+    <string name="please_click_back_again_to_exit">Click again to exit</string>
+    <!--Lesson-->
+
+    <string name="btn_menu_alphabets">Alphabets</string>
+    <string name="btn_menu_vowels">Vowels</string>
+    <string name="btn_menu_sounds">Sounds</string>
+    <string name="btn_menu_reading">Reading</string>
+    <string name="title_activity_learn_alphabets">LearnAlphabetsActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <!--Quiz-->
+    <string name="image">image</string>
+    <string name="result">Result</string>
+    <string name="hey_congratulations">Hey, Congratulations!</string>
+    <string name="finish">FINISH</string>
+
+    <string name="play_again">Play Again</string>
+    <string name="go_to_home">Home</string>
+    <string name="go_back">GoBack</string>
+    <string name="go_next">GoNext</string>
+    <string name="play">Play</string>
+
+    <!--ACTIVITY / FRAGMENT HEADER-->
+    <string name="fragment_header_level">LEVEL</string>
+    <string name="activity_header_chapter">CHAPTER</string>
+    <string name="activity_header_section">SECTION</string>
+    <string name="activity_header_sentence">SENTENCE</string>
+
+    <!--Fragment-->
+    <string name="action_bar_level">Levels</string>
+    <string name="action_bar_chapter">Chapters</string>
+    <string name="action_bar_learn_alphabet">LEARN ALPHABETS</string>
+    <string name="action_bar_quiz_alphabet">ALPHABETS QUIZ</string>
+
+
+    
+    <string name="no_item_found">No items found</string>
+    <string name="menu_main_home">HOME</string>
+    <string name="menu_main_lesson">LESSON</string>
+    <string name="menu_main_quiz">QUIZ</string>
+    <string name="menu_main_setting">SETTING</string>
+
+    <string name="menu_learn_alphabet">LEARN ALPHABETS</string>
+    <string name="menu_quiz_alphabet">ALPHABET QUIZ</string>
+    <string name="menu_learn_vowel">LEARN VOWELS</string>
+    <string name="menu_quiz_vowel">VOWEL QUIZ</string>
+
+</resources>

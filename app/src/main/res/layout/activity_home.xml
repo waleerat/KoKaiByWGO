@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.HomeActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="15dp"
+        >
+
+    <!--Alphabet-->
+        <com.wgoweb.kokaibywgo.utils.MSPTextView
+            android:id="@+id/camera_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_menu_height"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:text="@string/btn_menu_alphabets" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_learn_alphabets"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="Learn"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_all_alphabets"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="All"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_quiz_alphabets"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_weight="1"
+                android:text="Quiz"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+        </LinearLayout>
+
+
+
+        <!--Vowel-->
+        <com.wgoweb.kokaibywgo.utils.MSPTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_menu_height"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:text="@string/btn_menu_vowels" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_learn_vowels"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="Learn"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_all_vowels"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="All"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_quiz_vowels"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_weight="1"
+                android:text="Quiz"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+        </LinearLayout>
+        <!--CMS-->
+        <com.wgoweb.kokaibywgo.utils.MSPTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_menu_height"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:text="CMS" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_cms_level"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text=" ** Levels ** "
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_cms_chapter"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_weight="1"
+                android:text="** Chapter **"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+        </LinearLayout>
+
+        <!--Sounds-->
+        <com.wgoweb.kokaibywgo.utils.MSPTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_menu_height"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:text="@string/btn_menu_sounds" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_learn_sounds"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="Learn"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_quiz_sounds"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_weight="1"
+                android:text="Quiz"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+        </LinearLayout>
+
+
+        <!--Reading-->
+        <com.wgoweb.kokaibywgo.utils.MSPTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_menu_height"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:text="@string/btn_menu_reading" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_learn_reading"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="Learn"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+
+            <com.wgoweb.kokaibywgo.utils.MSPButton
+                android:id="@+id/btn_menu_quiz_reading"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/btn_menu_height"
+                android:layout_weight="1"
+                android:text="Quiz"
+                android:textColor="@color/button_text_menu_color"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:background="@drawable/button_menu_background"
+                />
+        </LinearLayout>
+
+
+
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

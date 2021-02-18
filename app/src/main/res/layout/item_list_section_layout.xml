@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <com.wgoweb.kokaibywgo.utils.MSPButton
+        android:id="@+id/btn_section_menu"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_menu_section_height"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:text="Section Item"
+        android:textColor="@color/button_text_menu_color"
+        android:textSize="18dp"
+        android:background="@drawable/menu_bar_pink"
+        />
+</LinearLayout>

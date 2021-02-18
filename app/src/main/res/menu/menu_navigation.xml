@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_bottom_menu_home"
+        android:title="@string/menu_main_home" />
+    <item
+        android:id="@+id/navigation_lessons"
+        android:icon="@drawable/ic_bottom_menu_lesson"
+        android:title="@string/menu_main_lesson" />
+
+    <item
+        android:id="@+id/navigation_quiz"
+        android:icon="@drawable/ic_bottom_menu_test"
+        android:title="@string/menu_main_quiz" />
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/ic_bottom_menu_setting"
+        android:title="@string/menu_main_setting" />
+</menu>

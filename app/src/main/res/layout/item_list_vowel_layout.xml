@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:id="@+id/item_row_layout">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/iv_item_image"
+            android:layout_width="100dp"
+            android:layout_height="138dp"
+            android:contentDescription="@string/image"
+            android:src="@color/quiz_selected_border"
+            android:scaleType="fitXY" />
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_vowel_english"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            tools:text="English Vowel"/>
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextView
+            android:id="@+id/tv_writing_pattern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="12dp"
+            android:textStyle="bold"
+            tools:text="Meaning"/>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
