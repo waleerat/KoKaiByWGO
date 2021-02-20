@@ -11,4 +11,14 @@
         <item name="android:textColorPrimary">@color/colorPrimary</item>
     </style>
 
+    <style name="AppTheme.RoundGreenButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/rounded_green_button_shape</item>
+    </style>
+
+    <style name="AppTheme.RoundBlueButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:background">@drawable/rounded_blue_button_shape</item>
+    </style>
+
+
+
 </resources>

@@ -1,4 +1,4 @@
-package com.wgoweb.kokaibywgo.ui.activities.vowels
+package com.wgoweb.kokaibywgo.ui.activities.learn
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -8,6 +8,7 @@ import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.ActivityAllVowelsBinding
 import com.wgoweb.kokaibywgo.models.VowelModel
 import com.wgoweb.kokaibywgo.ui.activities.BaseActivity
+import com.wgoweb.kokaibywgo.ui.activities.adapters.AllVowelsAdapter
 import com.wgoweb.kokaibywgo.utils.Constants
 import java.util.ArrayList
 
@@ -35,8 +36,8 @@ class AllVowelsActivity : BaseActivity() {
         hideProgressDialog()
 
         if (mVowelItems.size > 0) {
-            binding.rvDataItems.visibility = View.VISIBLE
-            binding.tvNoItemsFound.visibility = View.GONE
+            binding.rvVowelDataItems.visibility = View.VISIBLE
+            binding.tvVowelNoItemsFound.visibility = View.GONE
 
             // binding!!.rvDataItems.layoutManager = LinearLayoutManager(this)
             // binding!!.rvDataItems.setHasFixedSize(true)
@@ -44,26 +45,26 @@ class AllVowelsActivity : BaseActivity() {
             val orientation = resources.configuration.orientation
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 // In landscape
-                binding.rvDataItems.layoutManager = GridLayoutManager(this, 5)
+                binding.rvVowelDataItems.layoutManager = GridLayoutManager(this, 5)
             } else {
                 // In portrait
-                binding.rvDataItems.layoutManager = GridLayoutManager(this, 3)
+                binding.rvVowelDataItems.layoutManager = GridLayoutManager(this, 3)
             }
 
             val itemAdapter = AllVowelsAdapter(this@AllVowelsActivity, mVowelItems)
             // adapter instance is set to the recyclerview to inflate the items.
-            binding.rvDataItems.adapter = itemAdapter
+            binding.rvVowelDataItems.adapter = itemAdapter
 
 
         } else {
-            binding.rvDataItems.visibility = View.GONE
-            binding.tvNoItemsFound.visibility = View.VISIBLE
+            binding.rvVowelDataItems.visibility = View.GONE
+            binding.tvVowelNoItemsFound.visibility = View.VISIBLE
         }
     }
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = "All Vowels"
+        binding.tvVowelTitle.text = Constants.LEARN_VOWEL_TEXT
 
         val actionBar = supportActionBar
         if (actionBar != null) {

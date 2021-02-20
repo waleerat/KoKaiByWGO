@@ -5,12 +5,12 @@ import android.os.Bundle
 import android.view.View
 import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.ActivityHomeBinding
-import com.wgoweb.kokaibywgo.ui.activities.alphabets.AllAlphabetsActivity
-import com.wgoweb.kokaibywgo.ui.activities.alphabets.LearnAlphabetsActivity
-import com.wgoweb.kokaibywgo.ui.activities.alphabets.QuizAlphabetActivity
-import com.wgoweb.kokaibywgo.ui.activities.vowels.AllVowelsActivity
-import com.wgoweb.kokaibywgo.ui.activities.vowels.LearnVowelsActivity
-import com.wgoweb.kokaibywgo.ui.activities.vowels.QuizVowelActivity
+import com.wgoweb.kokaibywgo.ui.activities.learn.AllAlphabetsActivity
+import com.wgoweb.kokaibywgo.ui.activities.learn.LearnAlphabetsActivity
+import com.wgoweb.kokaibywgo.ui.activities.quiz.QuizAlphabetActivity
+import com.wgoweb.kokaibywgo.ui.activities.learn.AllVowelsActivity
+import com.wgoweb.kokaibywgo.ui.activities.learn.LearnVowelsActivity
+import com.wgoweb.kokaibywgo.ui.activities.quiz.QuizVowelActivity
 
 class HomeActivity : BaseActivity(), View.OnClickListener {
     private lateinit var binding: ActivityHomeBinding
@@ -27,13 +27,6 @@ class HomeActivity : BaseActivity(), View.OnClickListener {
         binding.btnMenuLearnVowels.setOnClickListener(this)
         binding.btnMenuAllVowels.setOnClickListener(this)
         binding.btnMenuQuizVowels.setOnClickListener(this)
-
-        binding.btnMenuLearnSounds.setOnClickListener(this)
-        binding.btnMenuQuizSounds.setOnClickListener(this)
-
-        binding.btnMenuLearnReading.setOnClickListener(this)
-        binding.btnMenuQuizReading.setOnClickListener(this)
-
     }
 
     override fun onClick(v: View?) {
@@ -68,14 +61,7 @@ class HomeActivity : BaseActivity(), View.OnClickListener {
                 val intent = Intent(this@HomeActivity, AllVowelsActivity::class.java)
                 startActivity(intent)
             }
-/*
-            R.id.btn_menu_sounds -> {
 
-            }
-
-            R.id.btn_menu_reading -> {
-
-            }*/
         }
     }
 

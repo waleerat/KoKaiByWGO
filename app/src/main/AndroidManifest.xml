@@ -9,21 +9,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KoKaiByWGO">
-        <activity android:name=".ui.activities.lessons.SectionActivity"></activity>
+
+        <activity android:name=".ui.activities.learn.AlphabetAndSoundActivity" />
+        <activity android:name=".ui.activities.TextToSpeechActivity" />
+        <activity android:name=".ui.activities.lessons.SectionActivity" />
         <activity android:name=".ui.activities.HomeActivity" />
         <activity android:name=".ui.activities.MainActivity" />
         <activity android:name=".ui.activities.lessons.ChapterActivity" />
-        <activity android:name=".ui.activities.vowels.AllVowelsActivity" />
-        <activity android:name=".ui.activities.alphabets.AllAlphabetsActivity" />
-        <activity android:name=".ui.activities.vowels.QuizVowelActivity" />
-        <activity android:name=".ui.activities.vowels.LearnVowelsActivity" />
-        <activity android:name=".ui.activities.alphabets.LearnAlphabetsActivity" />
+        <activity android:name=".ui.activities.learn.AllVowelsActivity" />
+        <activity android:name=".ui.activities.learn.AllAlphabetsActivity" />
+        <activity android:name=".ui.activities.quiz.QuizVowelActivity" />
+        <activity android:name=".ui.activities.learn.LearnVowelsActivity" />
+        <activity android:name=".ui.activities.learn.LearnAlphabetsActivity" />
         <activity android:name=".ui.activities.ResultActivity" />
-        <activity android:name=".ui.activities.alphabets.QuizAlphabetActivity" />
+        <activity android:name=".ui.activities.quiz.QuizAlphabetActivity" />
         <activity
             android:name=".ui.activities.lessons.SentenceActivity"
-            android:label="@string/title_activity_learn_alphabets"
             android:theme="@style/Theme.KoKaiByWGO.NoActionBar" />
+        <activity android:name=".ui.activities.quiz.QuizLessonActivity"></activity>
         <activity
             android:name=".ui.activities.SplashActivity"
             android:label="@string/app_name">

@@ -3,7 +3,7 @@
     {
       "image": "alphabet_01",
       "sound": "sound_01",
-      "alphabet": "ก",
+      "alphabetSound": "กอ",
       "vowelThai":"ก ไก่",
       "vowelEnglish":"ko kai",
       "meaning":"chicken",
@@ -14,7 +14,7 @@
     {
       "image": "alphabet_02" ,
       "sound": "sound_02",
-      "alphabet": "ข",
+      "alphabetSound": "ขอ",
       "vowelThai":"ข ไข่",
       "vowelEnglish":"kho khai",
       "meaning":"egg",
@@ -25,7 +25,7 @@
     {
       "image": "alphabet_03" ,
       "sound": "sound_03",
-      "alphabet": "ฃ",
+      "alphabetSound": "ขอ",
       "vowelThai":"ฃ ขวด",
       "vowelEnglish":"kho khuat",
       "meaning":"bottle (obsolete)",
@@ -36,7 +36,7 @@
     {
       "image": "alphabet_04" ,
       "sound": "sound_04",
-      "alphabet": "ค",
+      "alphabetSound": "คอ",
       "vowelThai":"ค ควาย",
       "vowelEnglish":"kho khwai",
       "meaning":"buffalo",
@@ -47,7 +47,7 @@
     {
       "image": "alphabet_05" ,
       "sound": "sound_05",
-      "alphabet": "ฅ",
+      "alphabetSound": "คอ",
       "vowelThai":"ฅ คน",
       "vowelEnglish":"kho khon",
       "meaning":"person (obsolete)",
@@ -58,7 +58,7 @@
     {
       "image": "alphabet_06" ,
       "sound": "sound_06",
-      "alphabet": "ฆ",
+      "alphabetSound": "คอ",
       "vowelThai":"ฆ ระฆัง",
       "vowelEnglish":"kho ra-khang",
       "meaning":"bell",
@@ -69,7 +69,7 @@
     {
       "image": "alphabet_07" ,
       "sound": "sound_07",
-      "alphabet": "ง",
+      "alphabetSound": "งอ",
       "vowelThai":"ง งู",
       "vowelEnglish":"ngo ngu",
       "meaning":"snake",
@@ -80,7 +80,7 @@
     {
       "image": "alphabet_08" ,
       "sound": "sound_08",
-      "alphabet": "จ",
+      "alphabetSound": "จอ",
       "vowelThai":"จ จาน",
       "vowelEnglish":"cho chan",
       "meaning":"plate",
@@ -91,7 +91,7 @@
     {
       "image": "alphabet_09" ,
       "sound": "sound_09",
-      "alphabet": "ฉ",
+      "alphabetSound": "ฉอ",
       "vowelThai":"ฉ ฉิ่ง",
       "vowelEnglish":"cho ching",
       "meaning":"cymbals",
@@ -101,7 +101,7 @@
     },
     { "image": "alphabet_10" ,
       "sound": "sound_10",
-      "alphabet": "ช",
+      "alphabetSound": "ชอ",
       "vowelThai":"ช ช้าง",
       "vowelEnglish":"cho chang",
       "meaning":"elephant",
@@ -112,7 +112,7 @@
     {
       "image": "alphabet_11" ,
       "sound": "sound_11",
-      "alphabet": "ซ",
+      "alphabetSound": "ซอ",
       "vowelThai":"ซ โซ่",
       "vowelEnglish":"so so",
       "meaning":"chain",
@@ -123,7 +123,7 @@
     {
       "image": "alphabet_12" ,
       "sound": "sound_12",
-      "alphabet": "ฌ",
+      "alphabetSound": "ชอ",
       "vowelThai":"ฌ เฌอ",
       "vowelEnglish":"cho choe",
       "meaning":"tree",
@@ -134,7 +134,7 @@
     {
       "image": "alphabet_13" ,
       "sound": "sound_13",
-      "alphabet": "ญ[a]",
+      "alphabetSound": "ยอ",
       "vowelThai":"ญ หญิง",
       "vowelEnglish":"yo ying",
       "meaning":"woman",
@@ -145,7 +145,7 @@
     {
       "image": "alphabet_14" ,
       "sound": "sound_14",
-      "alphabet": "ฎ",
+      "alphabetSound": "dor",
       "vowelThai":"ฎ ชฎา",
       "vowelEnglish":"do cha-da",
       "meaning":"headdress",
@@ -156,7 +156,7 @@
     {
       "image": "alphabet_15" ,
       "sound": "sound_15",
-      "alphabet": "ฏ",
+      "alphabetSound": "ตอ",
       "vowelThai":"ฏ ปฏัก",
       "vowelEnglish":"to pa-tak",
       "meaning":"goad, javelin",
@@ -166,7 +166,7 @@
     },
     { "image": "alphabet_16" ,
       "sound": "sound_16",
-      "alphabet": "ฐ[b]",
+      "alphabetSound": "ถอ",
       "vowelThai":"ฐ ฐาน",
       "vowelEnglish":"tho than",
       "meaning":"pedestal",
@@ -177,7 +177,7 @@
     {
       "image": "alphabet_17" ,
       "sound": "sound_17",
-      "alphabet": "ฑ",
+      "alphabetSound": "ทอ",
       "vowelThai":"ฑ มณโฑ",
       "vowelEnglish":"tho montho",
       "meaning":"Montho, character from Ramayana",
@@ -187,7 +187,7 @@
     },
     { "image": "alphabet_18" ,
       "sound": "sound_18",
-      "alphabet": "ฒ",
+      "alphabetSound": "ตอ",
       "vowelThai":"ฒ ผู้เฒ่า",
       "vowelEnglish":"tho phu-thao",
       "meaning":"elder",
@@ -197,7 +197,7 @@
     },
     { "image": "alphabet_19" ,
       "sound": "sound_19",
-      "alphabet": "ณ",
+      "alphabetSound": "นอ",
       "vowelThai":"ณ เณร",
       "vowelEnglish":"no nen",
       "meaning":"samanera",
@@ -207,7 +207,7 @@
     },
     { "image": "alphabet_20" ,
       "sound": "sound_20",
-      "alphabet": "ด",
+      "alphabetSound": "dor",
       "vowelThai":"ด เด็ก",
       "vowelEnglish":"do dek",
       "meaning":"child",
@@ -217,7 +217,7 @@
     },
     { "image": "alphabet_21" ,
       "sound": "sound_21",
-      "alphabet": "ต",
+      "alphabetSound": "ตอ",
       "vowelThai":"ต เต่า",
       "vowelEnglish":"to tao",
       "meaning":"turtle",
@@ -228,7 +228,7 @@
     {
       "image": "alphabet_22" ,
       "sound": "sound_22",
-      "alphabet": "ถ",
+      "alphabetSound": "ถอ",
       "vowelThai":"ถ ถุง",
       "vowelEnglish":"tho thung",
       "meaning":"sack",
@@ -239,7 +239,7 @@
     {
       "image": "alphabet_23" ,
       "sound": "sound_23",
-      "alphabet": "ท",
+      "alphabetSound": "ทอ",
       "vowelThai":"ท ทหาร",
       "vowelEnglish":"tho thahan",
       "meaning":"soldier",
@@ -250,7 +250,7 @@
     {
       "image": "alphabet_24" ,
       "sound": "sound_24",
-      "alphabet": "ธ",
+      "alphabetSound": "ทอ",
       "vowelThai":"ธ ธง",
       "vowelEnglish":"tho thong",
       "meaning":"flag",
@@ -261,7 +261,7 @@
     {
       "image": "alphabet_25" ,
       "sound": "sound_25",
-      "alphabet": "น",
+      "alphabetSound": "นอ",
       "vowelThai":"น หนู",
       "vowelEnglish":"no nu",
       "meaning":"mouse",
@@ -272,7 +272,7 @@
     {
       "image": "alphabet_26" ,
       "sound": "sound_26",
-      "alphabet": "บ",
+      "alphabetSound": "บอ",
       "vowelThai":"บ ใบไม้",
       "vowelEnglish":"bo baimai",
       "meaning":"leaf",
@@ -283,7 +283,7 @@
     {
       "image": "alphabet_27" ,
       "sound": "sound_27",
-      "alphabet": "ป",
+      "alphabetSound": "ปอ",
       "vowelThai":"ป ปลา",
       "vowelEnglish":"po pla",
       "meaning":"fish",
@@ -294,7 +294,7 @@
     {
       "image": "alphabet_28" ,
       "sound": "sound_28",
-      "alphabet": "ผ",
+      "alphabetSound": "phor",
       "vowelThai":"ผ ผึ้ง",
       "vowelEnglish":"pho phueng",
       "meaning":"bee",
@@ -305,7 +305,7 @@
     {
       "image": "alphabet_29" ,
       "sound": "sound_29",
-      "alphabet": "ฝ",
+      "alphabetSound": "ฝอ",
       "vowelThai":"ฝ ฝา",
       "vowelEnglish":"fo fa",
       "meaning":"lid",
@@ -316,7 +316,7 @@
     {
       "image": "alphabet_30" ,
       "sound": "sound_30",
-      "alphabet": "พ",
+      "alphabetSound": "พอ",
       "vowelThai":"พ พาน",
       "vowelEnglish":"pho phan",
       "meaning":"phan",
@@ -327,7 +327,7 @@
     {
       "image": "alphabet_31" ,
       "sound": "sound_31",
-      "alphabet": "ฟ",
+      "alphabetSound": "ฟอ",
       "vowelThai":"ฟ ฟัน",
       "vowelEnglish":"fo fan",
       "meaning":"teeth",
@@ -338,7 +338,7 @@
     {
       "image": "alphabet_32" ,
       "sound": "sound_32",
-      "alphabet": "ภ",
+      "alphabetSound": "พอ",
       "vowelThai":"ภ สำเภา",
       "vowelEnglish":"pho sam-phao",
       "meaning":"junk",
@@ -349,7 +349,7 @@
     {
       "image": "alphabet_33" ,
       "sound": "sound_33",
-      "alphabet": "ม",
+      "alphabetSound": "มอ",
       "vowelThai":"ม ม้า",
       "vowelEnglish":"mo ma",
       "meaning":"horse",
@@ -360,7 +360,7 @@
     {
       "image": "alphabet_34" ,
       "sound": "sound_34",
-      "alphabet": "ย",
+      "alphabetSound": "ยอ",
       "vowelThai":"ย ยักษ์",
       "vowelEnglish":"yo yak",
       "meaning":"giant, yaksha",
@@ -371,7 +371,7 @@
     {
       "image": "alphabet_35" ,
       "sound": "sound_35",
-      "alphabet": "ร",
+      "alphabetSound": "รอ",
       "vowelThai":"ร เรือ",
       "vowelEnglish":"ro ruea",
       "meaning":"boat",
@@ -382,7 +382,7 @@
     {
       "image": "alphabet_36" ,
       "sound": "sound_36",
-      "alphabet": "ล",
+      "alphabetSound": "ลอ",
       "vowelThai":"ล ลิง",
       "vowelEnglish":"lo ling",
       "meaning":"monkey",
@@ -393,7 +393,7 @@
     {
       "image": "alphabet_37" ,
       "sound": "sound_37",
-      "alphabet": "ว",
+      "alphabetSound": "วอ",
       "vowelThai":"ว แหวน",
       "vowelEnglish":"wo waen",
       "meaning":"ring",
@@ -404,7 +404,7 @@
     {
       "image": "alphabet_38" ,
       "sound": "sound_38",
-      "alphabet": "ศ",
+      "alphabetSound": "สอ",
       "vowelThai":"ศ ศาลา",
       "vowelEnglish":"so sala",
       "meaning":"pavilion, sala",
@@ -415,7 +415,7 @@
     {
       "image": "alphabet_39" ,
       "sound": "sound_39",
-      "alphabet": "ษ",
+      "alphabetSound": "สอ",
       "vowelThai":"ษ ฤๅษี",
       "vowelEnglish":"so rue-si",
       "meaning":"hermit",
@@ -426,7 +426,7 @@
     {
       "image": "alphabet_40" ,
       "sound": "sound_40",
-      "alphabet": "ส",
+      "alphabetSound": "สอ",
       "vowelThai":"ส เสือ",
       "vowelEnglish":"so suea",
       "meaning":"tiger",
@@ -437,7 +437,7 @@
     {
       "image": "alphabet_41" ,
       "sound": "sound_41",
-      "alphabet": "ห",
+      "alphabetSound": "หอ",
       "vowelThai":"ห หีบ",
       "vowelEnglish":"ho hip",
       "meaning":"chest, box",
@@ -448,7 +448,7 @@
     {
       "image": "alphabet_42" ,
       "sound": "sound_42",
-      "alphabet": "ฬ",
+      "alphabetSound": "ลอ",
       "vowelThai":"ฬ จุฬา",
       "vowelEnglish":"lo chu-la",
       "meaning":"kite",
@@ -459,7 +459,7 @@
     {
       "image": "alphabet_43" ,
       "sound": "sound_43",
-      "alphabet": "อ",
+      "alphabetSound": "ออ",
       "vowelThai":"อ อ่าง",
       "vowelEnglish":"o ang",
       "meaning":"basin",
@@ -470,7 +470,7 @@
     {
       "image": "alphabet_44" ,
       "sound": "sound_44",
-      "alphabet": "ฮ",
+      "alphabetSound": "ฮอ",
       "vowelThai":"ฮ นกฮูก",
       "vowelEnglish":"ho nok-huk",
       "meaning":"owl",

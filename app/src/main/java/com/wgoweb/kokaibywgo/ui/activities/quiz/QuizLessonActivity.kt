@@ -1,61 +1,75 @@
-package com.wgoweb.kokaibywgo.ui.activities.vowels
+package com.wgoweb.kokaibywgo.ui.activities.quiz
 
 import android.content.Intent
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
+import com.google.gson.Gson
 import com.wgoweb.kokaibywgo.R
-import com.wgoweb.kokaibywgo.databinding.ActivityQuizVowelBinding
-import com.wgoweb.kokaibywgo.models.VowelModel
+import com.wgoweb.kokaibywgo.databinding.ActivityQuizLessonBinding
+import com.wgoweb.kokaibywgo.firebase.SentenceListener
+import com.wgoweb.kokaibywgo.models.AlphabetModel
+import com.wgoweb.kokaibywgo.models.SentenceModel
 import com.wgoweb.kokaibywgo.ui.activities.BaseActivity
 import com.wgoweb.kokaibywgo.ui.activities.ResultActivity
 import com.wgoweb.kokaibywgo.utils.Constants
+import com.wgoweb.kokaibywgo.utils.SharePreferenceHelper
 
-class QuizVowelActivity : BaseActivity(), View.OnClickListener {
-    private lateinit var binding: ActivityQuizVowelBinding
+class QuizLessonActivity : BaseActivity(), View.OnClickListener {
+    private lateinit var binding: ActivityQuizLessonBinding
 
-    private lateinit var mVowelItems: ArrayList<VowelModel>
+    private lateinit var mSentenceItems: ArrayList<SentenceModel>
     private lateinit var mQuizChoices : ArrayList<Int>
     private  var mQuizAnswer: Int = 0
 
-    private val mAmountOfRows: Int = 32
+    private val mAmountOfRows: Int = 44
     private var mMaxQuiz: Int = 5
     private var mCurrentPostition: Int = 1
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswer: Int = 0
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityQuizVowelBinding.inflate(layoutInflater)
+        binding = ActivityQuizLessonBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupActionBar()
 
-        mVowelItems = Constants.getVowelItems(this)  // Get All Items
+        SentenceListener().getDataListItemForQuizActivity(this@QuizLessonActivity)
 
         binding.choiceOne.setOnClickListener(this)
         binding.choiceTwo.setOnClickListener(this)
         binding.choiceThree.setOnClickListener(this)
         binding.choiceFour.setOnClickListener(this)
-        binding.replayAnswer.setOnClickListener(this)
-
+        binding.playAnswer.setOnClickListener(this)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onResume() {
         super.onResume()
-        mMaxQuiz = Constants.MAX_QUIZ_FOR_VOWEL
+        mMaxQuiz = Constants.MAX_QUIZ_FOR_ALPHABETS
         mCurrentPostition = 1
         mSelectedOptionPosition = 0
         mCorrectAnswer = 0
-        if (mVowelItems.size > 0) {
+        if (mSentenceItems.size > 0) {
             loadQuiz()
+        }
+    }
+
+    fun successItemsList(itemsList: java.util.ArrayList<SentenceModel>){
+        mSentenceItems = itemsList
+    }
+
+    // call this function from SectionListener
+    fun saveSentenceToPreference(itemsList: java.util.ArrayList<SentenceModel>) {
+        if (itemsList.size > 0) {
+            val jsonString = Gson().toJson(itemsList)
+            SharePreferenceHelper().setSharePreference(this@QuizLessonActivity, Constants.REF_SENTENCE_PREFERENCE,jsonString )
         }
     }
 
@@ -72,15 +86,12 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
         mQuizAnswer = Constants.getAnswer()  // Int 1 to 4
         setQuizChoiceToLayout()
 
-        if (mCurrentPostition == 1 ) {
-            Handler().postDelayed(
-                {
-                    playSound( mVowelItems[mQuizChoices[mQuizAnswer]].sound)
-                },
-                1000 )
-        } else {
-            playSound( mVowelItems[mQuizChoices[mQuizAnswer]].sound)
-        }
+        Handler().postDelayed(
+            {
+                speakOut(mSentenceItems[mQuizChoices[mQuizAnswer]].sentence_text)
+
+            },
+            1000 )
 
     }
 
@@ -88,7 +99,7 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun setQuizChoiceToLayout() {
-        //Log.i("Choices Log >>",  mVowelItems[mQuizChoices[mQuizAnswer]].vowelThai + " " + mQuizAnswer)
+        //Log.i("Choices Log >>",  mSentenceItems[mQuizChoices[mQuizAnswer]].vowelThai + " " + mQuizAnswer)
 
         for ((choiceNumber, row) in mQuizChoices.withIndex()) {
 
@@ -96,20 +107,16 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
 
             when(choiceNumber) {
                 0 -> {
-                    binding.choiceOne.setImageResource(mVowelItems[row].image)
-                    setImageSize(binding.choiceOne, true)
+                    binding.choiceOne.text = mSentenceItems[row].sentence_text
                 }
                 1 -> {
-                    binding.choiceTwo.setImageResource(mVowelItems[row].image)
-                    setImageSize(binding.choiceTwo, true)
+                    binding.choiceTwo.text = mSentenceItems[row].sentence_text
                 }
                 2 -> {
-                    binding.choiceThree.setImageResource(mVowelItems[row].image)
-                    setImageSize(binding.choiceThree, true)
+                    binding.choiceThree.text = mSentenceItems[row].sentence_text
                 }
                 3 -> {
-                    binding.choiceFour.setImageResource(mVowelItems[row].image)
-                    setImageSize(binding.choiceFour, true)
+                    binding.choiceFour.text = mSentenceItems[row].sentence_text
                 }
             }
         }
@@ -131,8 +138,8 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
                 checkAnswer(3)
             }
 
-            R.id.replay_answer -> {
-                playSound( mVowelItems[mQuizChoices[mQuizAnswer]].sound)
+            R.id.playAnswer -> {
+                speakOut(mSentenceItems[mQuizChoices[mQuizAnswer]].sentence_text)
             }
         }
     }
@@ -145,11 +152,11 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
         if (selectedChoice == mQuizAnswer ) {
             mCorrectAnswer++
             playSound( "sound_correct")
-            // showErrorSnackBar("You have Correct" + mCorrectAnswer.toString() + " Answer" + mVowelItems[mQuizChoices[mQuizAnswer]].vowelThai, false)
+            // showErrorSnackBar("You have Correct" + mCorrectAnswer.toString() + " Answer" + mSentenceItems[mQuizChoices[mQuizAnswer]].vowelThai, false)
         } else {
             playSound( "sound_incorrect")
             borderIncorrectAnswerView(selectedChoice)
-            //showErrorSnackBar("You have Correct" + mCorrectAnswer.toString() + " Answer" + mVowelItems[mQuizChoices[mQuizAnswer]].vowelThai, true)
+            //showErrorSnackBar("You have Correct" + mCorrectAnswer.toString() + " Answer" + mSentenceItems[mQuizChoices[mQuizAnswer]].vowelThai, true)
         }
 
         mCurrentPostition++
@@ -215,7 +222,7 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun borderDefaultView(){
-        val options = ArrayList<ImageView>()
+        val options = ArrayList<TextView>()
         options.add(0, binding.choiceOne)
         options.add(1, binding.choiceTwo)
         options.add(2, binding.choiceThree)
@@ -229,7 +236,7 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = "Vowel Quiz"
+        binding.tvTitle.text = "Alphabet Quiz"
 
         val actionBar = supportActionBar
         if (actionBar != null) {

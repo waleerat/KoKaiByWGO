@@ -5,7 +5,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.activities.vowels.AllVowelsActivity">
+        tools:context=".ui.activities.learn.AllVowelsActivity">
 
         <!--START TOOLBAR-->
         <androidx.appcompat.widget.Toolbar
@@ -15,7 +15,7 @@
             android:background="@color/colorAccent">
 
             <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
-                android:id="@+id/tv_title"
+                android:id="@+id/tv_vowel_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -34,17 +34,9 @@
             android:gravity="center"
             android:padding="10dp">
 
-            <com.wgoweb.kokaibywgo.utils.MSPTextView
-                android:id="@+id/camera_title"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_menu_height"
-                android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
-                android:text="@string/btn_menu_vowels" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_data_items"
+                android:id="@+id/rv_vowel_data_items"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
@@ -55,7 +47,7 @@
                 android:padding="16dp"/>
 
             <TextView
-                android:id="@+id/tv_no_items_found"
+                android:id="@+id/tv_vowel_no_items_found"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"

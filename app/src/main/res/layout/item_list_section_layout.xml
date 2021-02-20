@@ -1,19 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
+    android:layout_marginTop="7dp"
+    android:background="@color/colorWhite"
+    android:orientation="horizontal"
+    android:padding="5dp">
 
-    <com.wgoweb.kokaibywgo.utils.MSPButton
-        android:id="@+id/btn_section_menu"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_menu_section_height"
-        android:layout_margin="10dp"
-        android:layout_weight="1"
-        android:text="Section Item"
-        android:textColor="@color/button_text_menu_color"
-        android:textSize="18dp"
-        android:background="@drawable/menu_bar_pink"
-        />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="10dp"
+        android:padding="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_blue_button_shape"
+        >
+        <ImageButton
+            android:id="@+id/btn_play_tts"
+            android:layout_width="@dimen/btn_menu_icon_width"
+            android:layout_height="@dimen/btn_menu_icon_height"
+            android:background="@android:color/transparent"
+            android:contentDescription="Go next"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/sound_on"
+            android:scaleType="fitXY"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:padding="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+
+            >
+
+            <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:gravity="center"
+                tools:text="Name" />
+
+            <com.wgoweb.kokaibywgo.utils.MSPTextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/btn_menu_textSize"
+                android:gravity="center"
+                android:textStyle="bold"
+                tools:text="Description" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_section_menu"
+            android:layout_width="@dimen/btn_menu_icon_width"
+            android:layout_height="@dimen/btn_menu_icon_height"
+            android:background="@android:color/transparent"
+            android:contentDescription="Go next"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/go_to_next"
+            android:scaleType="fitXY"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
 </LinearLayout>

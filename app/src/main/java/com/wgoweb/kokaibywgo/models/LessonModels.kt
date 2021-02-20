@@ -1,5 +1,5 @@
 package com.wgoweb.kokaibywgo.models
-
+/*
 data class LevelModel (
     var level_id : String?,
     var level_code : String,
@@ -45,3 +45,4 @@ data class ChapterWordModel (
     var word : String,
     var new_word: Boolean = false
 )
+*/

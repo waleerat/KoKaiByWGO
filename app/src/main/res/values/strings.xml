@@ -11,7 +11,7 @@
     <string name="btn_menu_vowels">Vowels</string>
     <string name="btn_menu_sounds">Sounds</string>
     <string name="btn_menu_reading">Reading</string>
-    <string name="title_activity_learn_alphabets">LearnAlphabetsActivity</string>
+    <string name="title_activity_learn_alphabets">เรียนตัวอักษรไทย</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -19,6 +19,7 @@
     <string name="previous">Previous</string>
 
     <!--Quiz-->
+    <string name="vowel_quiz_title">เลือกคำตอบที่ถูกต้อง</string>
     <string name="image">image</string>
     <string name="result">Result</string>
     <string name="hey_congratulations">Hey, Congratulations!</string>
@@ -38,21 +39,18 @@
 
     <!--Fragment-->
     <string name="action_bar_level">Levels</string>
-    <string name="action_bar_chapter">Chapters</string>
-    <string name="action_bar_learn_alphabet">LEARN ALPHABETS</string>
-    <string name="action_bar_quiz_alphabet">ALPHABETS QUIZ</string>
+    <string name="action_bar_chapter">บทเรียน</string>
 
-
-    
-    <string name="no_item_found">No items found</string>
+    <string name="no_item_found">ไม่พบข้อมูล</string>
     <string name="menu_main_home">HOME</string>
-    <string name="menu_main_lesson">LESSON</string>
-    <string name="menu_main_quiz">QUIZ</string>
-    <string name="menu_main_setting">SETTING</string>
+    <string name="menu_main_lesson">บทเรียน</string>
+    <string name="menu_main_quiz">แบบทดสอบ</string>
+    <string name="menu_main_setting">การตั้งค่า</string>
 
-    <string name="menu_learn_alphabet">LEARN ALPHABETS</string>
-    <string name="menu_quiz_alphabet">ALPHABET QUIZ</string>
-    <string name="menu_learn_vowel">LEARN VOWELS</string>
-    <string name="menu_quiz_vowel">VOWEL QUIZ</string>
+    <string name="menu_learn_alphabet">ตัวอักษรไทย</string>
+    <string name="menu_quiz_alphabet">แบบทดสอบตัวอักษรไทย</string>
+    <string name="menu_learn_vowel">สระไทย</string>
+    <string name="menu_quiz_vowel">ทดสอบสระไทย</string>
+    <string name="menu_alphabet_and_vowel">ตัวอักษรและสระไทย</string>
 
 </resources>

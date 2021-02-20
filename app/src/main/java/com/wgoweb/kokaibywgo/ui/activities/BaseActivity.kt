@@ -2,12 +2,15 @@ package com.wgoweb.kokaibywgo.ui.activities
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Handler
 import android.speech.tts.TextToSpeech
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.WindowInsets
 import android.view.WindowManager
 import android.widget.ImageView
@@ -25,6 +28,27 @@ import kotlin.math.roundToInt
 open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
     // A global variable for double back press feature.
     private var doubleBackToExitPressedOnce = false
+
+    private var mShowingDialog:Boolean = false
+
+    /**
+     * Toolbar Activity
+     */
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.toolbar_go_to_dashboard, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.action_go_to_home -> {
+            finish()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            true
+        }
+        else -> super.onOptionsItemSelected(item)
+    }
 
     /**
      * Set full screen
@@ -74,6 +98,7 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
     private lateinit var mProgressDialog: Dialog
     private lateinit var dialogBinding : DialogProgressBinding
     fun showProgressDialog(text: String) {
+        mShowingDialog = true
         mProgressDialog = Dialog(this)
 
         /*Set the screen content from a layout resource.
@@ -92,7 +117,9 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
     }
 
     fun hideProgressDialog() {
-        mProgressDialog.dismiss()
+        if (mShowingDialog) {
+            mProgressDialog.dismiss()
+        }
     }
 
     /**
@@ -158,7 +185,7 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
             imgHeight = (screenHeight * 0.30).roundToInt()
             imgWidth = (screenWidth * 0.40).roundToInt()
         } else {
-            imgHeight = (screenHeight * 0.75).roundToInt()
+            imgHeight = (screenHeight * 0.80).roundToInt()
             imgWidth = screenWidth
         }
 
@@ -206,7 +233,6 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
     }
 
     override fun onInit(status: Int) {
-
         if (status == TextToSpeech.SUCCESS) {
             // set US English as language for tts
             //val result = tts!!.setLanguage(Locale.US)
@@ -215,7 +241,6 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "The Language specified is not supported!")
             }
-
         } else {
             Log.e("TTS", "Initialization Failed!")
         }
@@ -229,7 +254,6 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
             tts!!.stop()
             tts!!.shutdown()
         }
-
         super.onDestroy()
     }
 

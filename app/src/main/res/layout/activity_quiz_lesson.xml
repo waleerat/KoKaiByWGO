@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.activities.quiz.QuizLessonActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!--START TOOLBAR-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_custom"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorAccent">
+
+            <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingStart="@dimen/toolbar_title_paddingStart"
+                android:paddingEnd="0dp"
+                android:text="@string/menu_quiz_alphabet"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/toolbar_title_text_size" />
+
+        </androidx.appcompat.widget.Toolbar>
+        <!--END TOOLBAR-->
+        <!--START-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="16dp"
+            >
+
+            <!-- START BODY -->
+            <!-- PROGRESS BAR -->
+            <LinearLayout
+                android:id="@+id/progressDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dp"
+                android:orientation="horizontal"
+                >
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:max="10"
+                    android:minHeight="50dp"
+                    android:progress="0"
+                    android:indeterminate="false"
+                    />
+                <TextView
+                    android:id="@+id/textViewProgressBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="15dp"
+                    android:textColorHighlight="#7A8089"
+                    android:textSize="14sp"
+                    android:text="0/10"
+                    />
+            </LinearLayout>
+
+            <!-- TEXT TITLE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+                <TextView
+                    android:id="@+id/TextViewQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10px"
+                    android:gravity="center"
+                    android:textColor="@color/quiz_title"
+                    android:textStyle="bold"
+                    android:textSize="22sp"
+                    android:text="@string/vowel_quiz_title" />
+
+                <ImageView
+                    android:id="@+id/playAnswer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30sp"
+                    android:layout_marginBottom="30dp"
+                    android:src="@drawable/sound_on" />
+            </LinearLayout>
+            <!-- CHOICES -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                >
+
+                <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                    android:id="@+id/choice_one"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:background="@drawable/option_border_default_bg"
+                    android:padding="15dp"
+                    android:textColor="#7A8089"
+                    android:textSize="18sp"
+                    tools:text="Apple"
+                    />
+                <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                    android:id="@+id/choice_two"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/option_border_default_bg"
+                    android:padding="15dp"
+                    android:textColor="#7A8089"
+                    android:textSize="18sp"
+                    tools:text="Apple"
+                    />
+                <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                    android:id="@+id/choice_three"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/option_border_default_bg"
+                    android:padding="15dp"
+                    android:textColor="#7A8089"
+                    android:textSize="18sp"
+                    tools:text="Apple"
+                    />
+                <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                    android:id="@+id/choice_four"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="center"
+                    android:background="@drawable/option_border_default_bg"
+                    android:padding="15dp"
+                    android:textColor="#7A8089"
+                    android:textSize="18sp"
+                    tools:text="Apple"
+                    />
+            </LinearLayout>
+            <!-- END BODY -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_alignParentBottom="true"
+                >
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+</ScrollView>

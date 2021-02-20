@@ -1,39 +1,46 @@
-package com.wgoweb.kokaibywgo.ui.activities.vowels
+package com.wgoweb.kokaibywgo.ui.activities.adapters
 
 import android.content.Context
 import android.media.MediaPlayer
+import android.util.DisplayMetrics
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.wgoweb.kokaibywgo.databinding.ItemListVowelLayoutBinding
-import com.wgoweb.kokaibywgo.models.VowelModel
+import com.wgoweb.kokaibywgo.databinding.ItemListAlphabetLayoutBinding
+import com.wgoweb.kokaibywgo.models.AlphabetModel
 import com.wgoweb.kokaibywgo.utils.GlobalFunctions
 import java.io.IOException
+import kotlin.math.roundToInt
 
-class AllVowelsAdapter (val context: Context, val items: ArrayList<VowelModel>): RecyclerView.Adapter<AllVowelsAdapter.GetViewBindingHolder>() {
+class AllAlphabetsAdapter(val context: Context,
+                          val items: ArrayList<AlphabetModel>
+                          ): RecyclerView.Adapter<AllAlphabetsAdapter.GetViewBindingHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GetViewBindingHolder {
-        val itemBinding = ItemListVowelLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = ItemListAlphabetLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return GetViewBindingHolder(context, itemBinding)
     }
 
     override fun onBindViewHolder(holder: GetViewBindingHolder, position: Int) {
-        val rowBinding: VowelModel = items[position]
+        val rowBinding: AlphabetModel = items[position]
         holder.bind(rowBinding)
     }
 
     override fun getItemCount(): Int = items.size
 
-    class GetViewBindingHolder(val context: Context, private val itemBinding: ItemListVowelLayoutBinding) : RecyclerView.ViewHolder(itemBinding.root) {
+    class GetViewBindingHolder(val context: Context,
+                               private val itemBinding: ItemListAlphabetLayoutBinding
+                               ) : RecyclerView.ViewHolder(itemBinding.root) {
         // A global variable for OnClickListener interface.
         private var onClickListener: View.OnClickListener? = null
 
 
-        fun bind(rowData: VowelModel) {
+        fun bind(rowData: AlphabetModel) {
 
-            itemBinding.tvVowelEnglish.text  = rowData.vowelEnglish
-            itemBinding.tvWritingPattern.text  = rowData.writing_pattern
+            itemBinding.tvAlphabetEnglish.text  = rowData.vowelEnglish
+            itemBinding.tvMeaning.text  = rowData.meaning
 
             GlobalFunctions(context).loadPictureFromDrawableId(rowData.image, itemBinding.ivItemImage)
 
@@ -57,6 +64,22 @@ class AllVowelsAdapter (val context: Context, val items: ArrayList<VowelModel>):
 
         }
 
+
+
     }
 
 }
+
+
+
+//GlideLoader(context).loadPictureFromDrawableId(rowData.image, itemBinding.ivItemImage)
+
+/*if (position % 2 == 0) {
+itemBinding.itemRow.setBackgroundColor(
+ContextCompat.getColor(context,
+R.color.colorThemeOrange
+)
+)
+} else {
+itemBinding.itemRow.setBackgroundColor(ContextCompat.getColor(context, R.color.colorThemePink))
+}*/

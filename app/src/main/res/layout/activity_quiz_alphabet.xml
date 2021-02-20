@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.activities.alphabets.QuizAlphabetActivity">
+        tools:context=".ui.activities.quiz.QuizAlphabetActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <!--START TOOLBAR-->
         <androidx.appcompat.widget.Toolbar
@@ -21,7 +27,7 @@
                 android:gravity="center"
                 android:paddingStart="@dimen/toolbar_title_paddingStart"
                 android:paddingEnd="0dp"
-                android:text="Sample Text"
+                android:text="@string/menu_quiz_vowel"
                 android:textColor="@color/colorWhite"
                 android:textSize="@dimen/toolbar_title_text_size" />
 
@@ -77,7 +83,7 @@
                 android:textColor="@color/quiz_title"
                 android:textStyle="bold"
                 android:textSize="22sp"
-                android:text="What is this Alphabet call?" />
+                android:text="@string/vowel_quiz_title" />
 
 
             <!-- CHOICES -->
@@ -141,29 +147,32 @@
 
                 </LinearLayout>
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="20dp"
-                >
-
-                <ImageButton
-                    android:id="@+id/replay_answer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_play_again"
-                    android:background="@color/colorWhite"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
-                    />
-
-            </LinearLayout>
-
             <!-- END BODY -->
         </LinearLayout>
-        <!--END-->
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentBottom="true"
+            >
+
+            <ImageButton
+                android:id="@+id/replay_answer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_play_again"
+                android:background="@color/colorWhite"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                />
+
+        </LinearLayout>
     </LinearLayout>
+    <!--END-->
+
+
+
+    </RelativeLayout>

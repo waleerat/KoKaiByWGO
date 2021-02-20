@@ -10,9 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center"
-        android:paddingLeft="-15dp"
-        android:paddingRight="-15dp"
         >
         <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
             android:id="@+id/activity_title"
@@ -21,54 +18,130 @@
             android:gravity="center"
             android:textSize="25sp"
             android:textColor="@color/colorPrimary"
-            android:text="@string/menu_main_quiz"
-            />
+            android:text="@string/menu_main_quiz"/>
 
-        <com.wgoweb.kokaibywgo.utils.MSPButton
-            android:id="@+id/btn_menu_quiz_alphabets"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_menu_level_height"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:text="@string/menu_quiz_alphabet"
-            android:textColor="@color/button_text_menu_color"
-            android:textSize="25dp"
-            android:background="@drawable/menu_bar_blue"
-            />
-        <com.wgoweb.kokaibywgo.utils.MSPButton
-            android:id="@+id/btn_menu_quiz_vowels"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_menu_level_height"
-            android:layout_margin="10dp"
-            android:layout_weight="1"
-            android:text="@string/menu_quiz_vowel"
-            android:textColor="@color/button_text_menu_color"
-            android:textSize="25dp"
-            android:background="@drawable/menu_bar_blue"
-            />
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_view_items"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone"
-            />
-
-        <TextView
-            android:id="@+id/tv_no_items_found"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/no_item_found"
-            android:textAlignment="center"
-            android:textSize="@dimen/no_item_found_textSize" />
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
+            <!--Alphabet-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_blue_button_shape"
+                >
+                <ImageButton
+                    android:id="@+id/btn_learn_alphabet_play"
+                    android:layout_width="@dimen/btn_menu_icon_width"
+                    android:layout_height="@dimen/btn_menu_icon_height"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Go next"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/sound_on"
+                    android:scaleType="fitXY"/>
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="left|center"
+                        android:textSize="@dimen/btn_menu_textSize"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@string/menu_quiz_alphabet"/>
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btn_menu_quiz_alphabets"
+                    android:layout_width="@dimen/btn_menu_icon_width"
+                    android:layout_height="@dimen/btn_menu_icon_height"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Go next"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/go_to_next"
+                    android:scaleType="fitXY"/>
+            </LinearLayout>
+            <!--Alphabet-->
+
+            <!--Alphabet-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:background="@drawable/rounded_blue_button_shape"
+                >
+                <ImageButton
+                    android:id="@+id/btn_learn_vowel_play"
+                    android:layout_width="@dimen/btn_menu_icon_width"
+                    android:layout_height="@dimen/btn_menu_icon_height"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Go next"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/sound_on"
+                    android:scaleType="fitXY"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:gravity="left|center"
+                        android:textSize="@dimen/btn_menu_textSize"
+                        android:textColor="@color/colorPrimary"
+                        android:text="@string/menu_quiz_vowel"/>
+                </LinearLayout>
+
+                <ImageButton
+                    android:id="@+id/btn_menu_quiz_vowels"
+                    android:layout_width="@dimen/btn_menu_icon_width"
+                    android:layout_height="@dimen/btn_menu_icon_height"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Go next"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/go_to_next"
+                    android:scaleType="fitXY"/>
+            </LinearLayout>
+            <!--Alphabet-->
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_view_items"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/tv_no_items_found"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:text="@string/no_item_found"
+                android:textAlignment="center"
+                android:textSize="@dimen/no_item_found_textSize" />
+
+        </LinearLayout>
     </LinearLayout>
-
-
-
 </FrameLayout>

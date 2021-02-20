@@ -9,9 +9,9 @@ import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.FragmentQuizBinding
 import com.wgoweb.kokaibywgo.firebase.LevelListener
 import com.wgoweb.kokaibywgo.models.LevelModel
-import com.wgoweb.kokaibywgo.ui.activities.alphabets.QuizAlphabetActivity
-import com.wgoweb.kokaibywgo.ui.activities.lessons.LevelsFragmentAdapter
-import com.wgoweb.kokaibywgo.ui.activities.vowels.QuizVowelActivity
+import com.wgoweb.kokaibywgo.ui.activities.adapters.QuizFragmentAdapter
+import com.wgoweb.kokaibywgo.ui.activities.quiz.QuizAlphabetActivity
+import com.wgoweb.kokaibywgo.ui.activities.quiz.QuizVowelActivity
 import com.wgoweb.kokaibywgo.utils.Constants
 import com.wgoweb.kokaibywgo.utils.SharePreferenceHelper
 import java.util.ArrayList
@@ -63,7 +63,12 @@ class QuizFragment : BaseFragment(), View.OnClickListener {
             binding.rvViewItems.layoutManager = LinearLayoutManager(activity)
             binding.rvViewItems.setHasFixedSize(true)
 
-            val itemAdapter = LevelsFragmentAdapter(requireActivity(), itemsList, "QUIZ")
+            val itemAdapter = QuizFragmentAdapter(requireActivity(), itemsList, "QUIZ", object:
+                OnClickListener {
+                override fun onClick(currentText: String) {
+                    speakOut(currentText)
+                }
+            })
             // adapter instance is set to the recyclerview to inflate the items.
             binding.rvViewItems.adapter = itemAdapter
         } else {
@@ -83,5 +88,9 @@ class QuizFragment : BaseFragment(), View.OnClickListener {
                 startActivity(intent)
             }
         }
+    }
+
+    public interface OnClickListener {
+        fun onClick(currentText: String)
     }
 }

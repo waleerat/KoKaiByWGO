@@ -8,7 +8,7 @@ data class ResponseData (
 data class AlphabetItem (
      var image: String,
      var sound: String,
-     var alphabet: String,
+     var alphabetSound: String,
      var vowelThai: String,
      var vowelEnglish: String,
      var meaning: String,
@@ -22,7 +22,7 @@ data class AlphabetItem (
 data class AlphabetModel (
      var image: Int,
      var sound: String,
-     var alphabet: String,
+     var alphabetSound: String,
      var vowelThai: String,
      var vowelEnglish: String,
      var meaning: String,

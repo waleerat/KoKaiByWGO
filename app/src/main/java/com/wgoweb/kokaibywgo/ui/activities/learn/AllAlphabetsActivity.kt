@@ -1,4 +1,4 @@
-package com.wgoweb.kokaibywgo.ui.activities.alphabets
+package com.wgoweb.kokaibywgo.ui.activities.learn
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -8,6 +8,7 @@ import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.ActivityAllAlphabetsBinding
 import com.wgoweb.kokaibywgo.models.AlphabetModel
 import com.wgoweb.kokaibywgo.ui.activities.BaseActivity
+import com.wgoweb.kokaibywgo.ui.activities.adapters.AllAlphabetsAdapter
 import com.wgoweb.kokaibywgo.utils.Constants
 import java.util.*
 
@@ -34,8 +35,8 @@ class AllAlphabetsActivity : BaseActivity() {
         hideProgressDialog()
 
         if (mAlphabetItems.size > 0) {
-            binding.rvDataItems.visibility = View.VISIBLE
-            binding.tvNoItemsFound.visibility = View.GONE
+            binding.rvAlphabetDataItems.visibility = View.VISIBLE
+            binding.tvAlphabetNoItemsFound.visibility = View.GONE
 
            // binding!!.rvDataItems.layoutManager = LinearLayoutManager(this)
            // binding!!.rvDataItems.setHasFixedSize(true)
@@ -43,26 +44,24 @@ class AllAlphabetsActivity : BaseActivity() {
             val orientation = resources.configuration.orientation
             if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 // In landscape
-                binding.rvDataItems.layoutManager = GridLayoutManager(this, 5)
+                binding.rvAlphabetDataItems.layoutManager = GridLayoutManager(this, 5)
             } else {
                 // In portrait
-                binding.rvDataItems.layoutManager = GridLayoutManager(this, 3)
+                binding.rvAlphabetDataItems.layoutManager = GridLayoutManager(this, 3)
             }
 
             val itemAdapter = AllAlphabetsAdapter(this@AllAlphabetsActivity, mAlphabetItems)
             // adapter instance is set to the recyclerview to inflate the items.
-            binding.rvDataItems.adapter = itemAdapter
-
-
+            binding.rvAlphabetDataItems.adapter = itemAdapter
         } else {
-            binding.rvDataItems.visibility = View.GONE
-            binding.tvNoItemsFound.visibility = View.VISIBLE
+            binding.rvAlphabetDataItems.visibility = View.GONE
+            binding.tvAlphabetNoItemsFound.visibility = View.VISIBLE
         }
     }
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = "All Alphabets"
+        binding.tvAlphabetTitle.text = Constants.LEARN_ALPHABET_TEXT
 
         val actionBar = supportActionBar
         if (actionBar != null) {

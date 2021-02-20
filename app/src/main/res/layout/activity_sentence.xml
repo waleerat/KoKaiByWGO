@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.lessons.SentenceActivity">
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.activities.lessons.SentenceActivity">
-
+        android:gravity="top"
+        android:paddingBottom="60dp"
+        >
         <!--START TOOLBAR-->
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_custom"
@@ -31,17 +36,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
-            android:padding="10dp">
+            android:gravity="center" >
 
-            <com.wgoweb.kokaibywgo.utils.MSPTextView
+            <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
                 android:id="@+id/activity_title"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/btn_menu_height"
                 android:gravity="center"
-                android:textSize="20sp"
-                android:textColor="@android:color/black"
-                android:text="@string/activity_header_section" />
+                android:textSize="25sp"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/activity_header_sentence" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_view_items"
@@ -62,6 +66,54 @@
                 android:textSize="@dimen/no_item_found_textSize" />
 
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_alignParentBottom="true"
+        >
 
+        <ImageButton
+            android:id="@+id/btn_previous_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tts_play_back"
+            android:background="@color/colorWhite"
+            android:contentDescription="@string/go_back"
+            />
+        <ImageButton
+            android:id="@+id/btn_pause_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tts_pause"
+            android:background="@color/colorWhite"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:contentDescription="@string/play"
+            />
+        <ImageButton
+            android:id="@+id/btn_auto_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tts_auto_play"
+            android:background="@color/colorWhite"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:contentDescription="@string/play"
+            />
+        <ImageButton
+            android:id="@+id/btn_next_sound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tts_play_next"
+            android:background="@color/colorWhite"
+            android:contentDescription="@string/go_next"
+            />
 
     </LinearLayout>
+
+</RelativeLayout >

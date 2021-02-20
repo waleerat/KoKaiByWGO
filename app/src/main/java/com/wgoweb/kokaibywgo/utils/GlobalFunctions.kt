@@ -1,10 +1,13 @@
 package com.wgoweb.kokaibywgo.utils
 
+import android.app.Activity
 import android.content.Context
 import android.net.Uri
+import android.util.DisplayMetrics
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import java.io.IOException
+import kotlin.math.roundToInt
 
 class GlobalFunctions(val context: Context) {
 
@@ -34,6 +37,8 @@ class GlobalFunctions(val context: Context) {
             e.printStackTrace()
         }
     }
+
+
 
 
 

@@ -10,6 +10,7 @@ import com.wgoweb.kokaibywgo.databinding.ActivityChapterBinding
 import com.wgoweb.kokaibywgo.firebase.ChapterListener
 import com.wgoweb.kokaibywgo.models.ChapterModel
 import com.wgoweb.kokaibywgo.ui.activities.BaseActivity
+import com.wgoweb.kokaibywgo.ui.activities.adapters.ChapterActivityAdapter
 import com.wgoweb.kokaibywgo.utils.Constants
 import com.wgoweb.kokaibywgo.utils.SharePreferenceHelper
 import java.util.ArrayList
@@ -33,27 +34,27 @@ class ChapterActivity : BaseActivity() {
             mLevelName = intent.getStringExtra(Constants.INTENT_LEVEL_NAME)!!
             binding.activityTitle.text = mLevelName
         }
-        Log.i("Get Chapter from >>", "$mLevelId   $mLevelName")
+        //Log.i("Get Chapter from >>", "$mLevelId   $mLevelName")
         setupActionBar()
-
+        binding.tvNoItemsFound.visibility = View.GONE
         // Show the progress dialog.
         showProgressDialog(resources.getString(R.string.please_wait))
         ChapterListener().getDataListItemForChapterActivity(this@ChapterActivity, mLevelId)
-
     }
 
 
     // call this function from ChapterListener
     fun saveChapterToPreference(itemsList: ArrayList<ChapterModel>) {
+
         if (itemsList.size > 0) {
             val jsonString = Gson().toJson(itemsList)
                 SharePreferenceHelper().setSharePreference(this@ChapterActivity, Constants.REF_CHAPTER_PREFERENCE,jsonString )
         }
     }
 
-
     // call this function from ChapterListener
     fun successItemsList(itemsList: ArrayList<ChapterModel>){
+
         // Hide the progress dialog.
         hideProgressDialog()
         if (itemsList.size > 0) {
@@ -63,7 +64,11 @@ class ChapterActivity : BaseActivity() {
             binding.rvViewItems.layoutManager = LinearLayoutManager(this@ChapterActivity)
             binding.rvViewItems.setHasFixedSize(true)
 
-            val itemAdapter = ChapterActivityAdapter(this@ChapterActivity, itemsList)
+            val itemAdapter = ChapterActivityAdapter(this@ChapterActivity, itemsList, object: OnClickListener {
+                override fun onClick(currentText: String) {
+                    speakOut(currentText)
+                }
+            })
             // adapter instance is set to the recyclerview to inflate the items.
             binding.rvViewItems.adapter = itemAdapter
         } else {
@@ -85,4 +90,12 @@ class ChapterActivity : BaseActivity() {
             onBackPressed()
         }
     }
-}
+
+    public interface OnClickListener {
+        fun onClick(currentText: String) {
+            Log.i("onClick >>", "function from Dapter")
+        }
+    }
+
+    }
+

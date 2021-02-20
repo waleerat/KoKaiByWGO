@@ -15,7 +15,7 @@ import com.wgoweb.kokaibywgo.ui.fragments.QuizFragment
 class SharePreferenceHelper {
 
     fun setSharePreference(activity: Activity, preferenceName: String, jsonSting:String){
-       /* Log.i("SAVE-preferenceName >>", "$preferenceName -> $jsonSting")
+       Log.i("SAVE-preferenceName >>", "SAVE !!")
 
         if (jsonSting != "") {
             val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
@@ -23,7 +23,7 @@ class SharePreferenceHelper {
 
             editor.putString(preferenceName, jsonSting)
             editor.apply()
-        }*/
+        }
     }
     // Just for testing
     fun clearLevelPreference(activity: Activity, preferenceName: String){
@@ -37,7 +37,7 @@ class SharePreferenceHelper {
 
         val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
         val jsonString: String = sharedPreferences.getString(Constants.REF_LEVEL_PREFERENCE, "")!!
-         //Log.i("getLevelPreference >>", jsonString)
+         Log.i("getLevelPreference >>", jsonString)
         if (jsonString != "") {
             val gsonBuilder = GsonBuilder().serializeNulls()
             val gson = gsonBuilder.create()
@@ -53,7 +53,7 @@ class SharePreferenceHelper {
         val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
          val jsonString: String = sharedPreferences.getString(Constants.REF_CHAPTER_PREFERENCE, "")!!
 
-         //Log.i("getChapterReference >>", jsonString)
+         Log.i("getChapterReference >>", jsonString)
         if (jsonString != "") {
             val gsonBuilder = GsonBuilder().serializeNulls()
             val gson = gsonBuilder.create()

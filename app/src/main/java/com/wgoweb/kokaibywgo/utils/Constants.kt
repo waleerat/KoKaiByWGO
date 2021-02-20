@@ -16,10 +16,11 @@ object Constants {
 
 
     // Table
-    const val TBL_LEVELS = "Levels"
-    const val TBL_CHAPTERS = "Chapters"
-    const val TBL_SECTIONS = "Sections"
-    const val TBL_SENTENCES = "Sentences"
+    const val COLLECTION_LEVEL = "KokaiLevel"
+    const val COLLECTION_CHAPTER = "KokaiChapter"
+    const val COLLECTION_SECTION_GROUP: String = "KokaiSectionGroup"
+    const val COLLECTION_SECTION = "KokaiSection"
+    const val COLLECTION_SENTENCE = "KokaiSentence"
 
     // Intent
     const val INTENT_LEVEL_ID = "intent_level_id"
@@ -38,6 +39,14 @@ object Constants {
     const val USER_NAME: String = "user_name"
     const val TOTAL_QUESTION: String = "total_question"
     const val CORRECT_ANSWERS: String = "correct_answers"
+
+    var TEXT_TO_SPEECH: String = ""
+    const val LEARN_ALPHABET_TEXT = "ตัวอักษรไทย"
+    const val LEARN_VOWEL_TEXT = "สระไทย"
+    const val LEARN_ALPHABET_AND_SOUND_TEXT = "ตัวอักษรและสระไทย"
+    const val QUIZ_ALPHABET_TEXT = "แบบทดสอบตัวอักษรไทย"
+    const val QUIZ_VOWEL_TEXT = "ทดสอบสระไทย"
+    const val QUIZ_TEXT = "ทดสอบ"
 
 
     fun generateChoices(amountOfRows: Int): ArrayList<Int> {
@@ -76,7 +85,7 @@ object Constants {
                 saveItem = AlphabetModel(
                     imageResource,
                     rowItem.sound,
-                    rowItem.alphabet,
+                    rowItem.alphabetSound,
                     rowItem.vowelThai,
                     rowItem.vowelEnglish,
                     rowItem.meaning,
