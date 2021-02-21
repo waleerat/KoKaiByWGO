@@ -39,13 +39,15 @@ class SectionActivityAdapter(val context: Context,
         private val mListener = listener
 
         fun bind(rowData: SectionModel) {
+
             itemBinding.tvName.text  = rowData.section_name
             itemBinding.tvDescription.text  = rowData.section_descritpion
+            Constants.LESSON_TEXT = rowData.section_name
 
             itemBinding.btnSectionMenu.setOnClickListener {
                 // Intent to the other Activity
                 val intent = Intent(context, SentenceActivity::class.java)
-                intent.putExtra(Constants.INTENT_SECTION_ID, rowData.section_id.toString())
+                intent.putExtra(Constants.INTENT_SECTION_ID, rowData.section_id)
                 intent.putExtra(Constants.INTENT_SECTION_NAME, rowData.section_descritpion)
                 context.startActivity(intent)
             }

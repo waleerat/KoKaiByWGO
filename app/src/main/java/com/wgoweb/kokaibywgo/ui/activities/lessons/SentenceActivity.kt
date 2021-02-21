@@ -18,6 +18,7 @@ import com.wgoweb.kokaibywgo.ui.activities.adapters.SentenceActivityAdapter
 import com.wgoweb.kokaibywgo.utils.Constants
 import com.wgoweb.kokaibywgo.utils.SharePreferenceHelper
 import java.util.*
+import kotlin.math.roundToInt
 
 
 class SentenceActivity : BaseActivity(), View.OnClickListener {
@@ -37,7 +38,7 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivitySentenceBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        Constants.LONGEST_SENTENCE = "" // reset longest sentence to empty
         if (intent.hasExtra(Constants.INTENT_SECTION_ID)) {
             mSectionId = intent.getStringExtra(Constants.INTENT_SECTION_ID)!!
         }
@@ -47,7 +48,6 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
         }
 
         setupActionBar()
-
         // Show the progress dialog.
         showProgressDialog(resources.getString(R.string.please_wait))
         SentenceListener().getDataListItemForSentenceActivity(this@SentenceActivity, mSectionId)
@@ -61,6 +61,7 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
         binding.btnNextSound.setOnClickListener(this)
             // Log.i("Get Sentence from >>", "$mSectionId   $mSectionName")
     }
+
 
     // call this function from SectionListener
     fun saveSentenceToPreference(itemsList: ArrayList<SentenceModel>) {
@@ -163,7 +164,9 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun getAutoPlayItem(){
-        restTimer = object : CountDownTimer((mSentenceItems.size * 3000).toLong(),3000) {
+        val timerInMinutes = timerPerSentence()
+
+        restTimer = object : CountDownTimer((mSentenceItems.size * (timerInMinutes * 1000)).toLong(),(timerInMinutes * 1000).toLong()) {
             override fun onTick(millisUntilFinished: Long) {
                 if (mCurrentPostition <= mSentenceItems.size-1) {
                     // Disable Button
@@ -176,35 +179,37 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
                     }
                 }
             }
-
             override fun onFinish() {
                 if (mCurrentPostition > mSentenceItems.size-1) {
-
                     controlPlayBackAndPlayNextButton("btnPreviousSound", false)
                     controlPlayBackAndPlayNextButton("btnNextSound", true)
                     enabledAutoPlayButton()
-
                 }
             }
         }.start()
     }
 
+    fun  timerPerSentence() : Int{
+        var timerInMinutes = 3
+
+        if (Constants.LONGEST_SENTENCE.length > 30) {
+            timerInMinutes = (Constants.LONGEST_SENTENCE.length  /  8.1).roundToInt()
+        }
+        return timerInMinutes
+    }
+
     private fun checkDisableButton(){
         if (mCurrentPostition == 0) {
-            Log.i("checkDisableButton >>", "Case 2")
             controlPlayBackAndPlayNextButton("btnPreviousSound", false)
             controlPlayBackAndPlayNextButton("btnNextSound", true)
         } else if (mCurrentPostition > mSentenceItems.size-1) {
-            Log.i("checkDisableButton >>", "Case 1")
             controlPlayBackAndPlayNextButton("btnPreviousSound", true)
             controlPlayBackAndPlayNextButton("btnNextSound", false)
         } else if (mCurrentPostition >= 0 || mCurrentPostition < mSentenceItems.size-1) {
-            Log.i("checkDisableButton >>", "Case 2")
             controlPlayBackAndPlayNextButton("btnPreviousSound", true)
             controlPlayBackAndPlayNextButton("btnNextSound", true)
 
         } else {
-            Log.i("checkDisableButton >>", "Case 3")
             controlPlayBackAndPlayNextButton("btnPreviousSound", true)
             controlPlayBackAndPlayNextButton("btnNextSound", true)
         }
@@ -274,7 +279,7 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = mSectionName
+        binding.tvTitle.text = Constants.LESSON_TEXT//mSectionName
 
         val actionBar = supportActionBar
         if (actionBar != null) {

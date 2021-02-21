@@ -37,7 +37,7 @@
                 android:background="@drawable/rounded_blue_button_shape"
                 >
                 <ImageButton
-                    android:id="@+id/btn_learn_alphabet_play"
+                    android:id="@+id/btn_quiz_alphabet_play"
                     android:layout_width="@dimen/btn_menu_icon_width"
                     android:layout_height="@dimen/btn_menu_icon_height"
                     android:background="@android:color/transparent"
@@ -86,7 +86,7 @@
                 android:background="@drawable/rounded_blue_button_shape"
                 >
                 <ImageButton
-                    android:id="@+id/btn_learn_vowel_play"
+                    android:id="@+id/btn_quiz_vowel_play"
                     android:layout_width="@dimen/btn_menu_icon_width"
                     android:layout_height="@dimen/btn_menu_icon_height"
                     android:background="@android:color/transparent"

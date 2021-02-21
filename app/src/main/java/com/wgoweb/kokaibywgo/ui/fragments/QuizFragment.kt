@@ -34,6 +34,8 @@ class QuizFragment : BaseFragment(), View.OnClickListener {
 
         binding.btnMenuQuizAlphabets.setOnClickListener(this)
         binding.btnMenuQuizVowels.setOnClickListener(this)
+        binding.btnQuizVowelPlay.setOnClickListener(this)
+        binding.btnQuizAlphabetPlay.setOnClickListener(this)
 
         // Show the progress dialog.
         showProgressDialog(resources.getString(R.string.please_wait))
@@ -87,6 +89,15 @@ class QuizFragment : BaseFragment(), View.OnClickListener {
                 val intent = Intent(context, QuizVowelActivity::class.java)
                 startActivity(intent)
             }
+
+            R.id.btn_quiz_alphabet_play -> {
+                speakOut(Constants.QUIZ_ALPHABET_TEXT)
+            }
+            R.id.btn_quiz_vowel_play -> {
+                speakOut(Constants.QUIZ_VOWEL_TEXT)
+            }
+
+
         }
     }
 

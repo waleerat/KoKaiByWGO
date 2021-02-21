@@ -13,6 +13,8 @@
 
     <!--Lesson-->
     <color name="button_text_menu_color">#FFFFFFFF</color>
+    <color name="background_row_odd">#f4f9f9</color>
+    <color name="background_row_even">#f1f3de</color>
 
 <!--Quiz-->
     <color name="quiz_border_default_color">#f4f9f9</color>

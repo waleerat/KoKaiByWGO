@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wgoweb.kokaibywgo.databinding.ItemListQuizLayoutBinding
 import com.wgoweb.kokaibywgo.models.LevelModel
 import com.wgoweb.kokaibywgo.ui.activities.lessons.ChapterActivity
+import com.wgoweb.kokaibywgo.ui.activities.quiz.QuizLessonActivity
 import com.wgoweb.kokaibywgo.ui.fragments.QuizFragment
 import com.wgoweb.kokaibywgo.utils.Constants
 
@@ -51,7 +52,7 @@ class QuizFragmentAdapter(
         var  mMenuKey: String = menuKey
         fun bind(rowData: LevelModel) {
             // GlobalFunctions(context).loadPictureFromDrawableId(rowData.image, itemBinding.ivItemImage)
-            itemBinding.tvName.text = rowData.level_name
+            itemBinding.tvName.text = Constants.QUIZ_TEXT+rowData.level_name
 
             if (rowData.background != "") {
                 //itemBinding.btnLevelMenu.setBackgroundColor(Color.parseColor(rowData.background));
@@ -62,23 +63,16 @@ class QuizFragmentAdapter(
                     onClickListener!!.onClick(itemBinding.root)
                 } else {
 
-                    when (mMenuKey) {
-                        "QUIZ" -> {
-                            // Go to Quiz
-                        }
-                        "LESSON" ->  {
-                            val intent = Intent(context, ChapterActivity::class.java)
-                            intent.putExtra(Constants.INTENT_LEVEL_ID, rowData.level_id.toString())
-                            intent.putExtra(Constants.INTENT_LEVEL_NAME, rowData.level_name)
-                            context.startActivity(intent)
-                        }
-                    }
+                    val intent = Intent(context, QuizLessonActivity::class.java)
+                    intent.putExtra(Constants.INTENT_LEVEL_ID, rowData.level_id)
+                    intent.putExtra(Constants.INTENT_LEVEL_NAME, rowData.level_name)
+                    context.startActivity(intent)
 
                 }
             }
 
             itemBinding.btnPlayTts.setOnClickListener{
-                Constants.TEXT_TO_SPEECH =  rowData.level_name
+                Constants.TEXT_TO_SPEECH =  Constants.QUIZ_TEXT+rowData.level_name
                 //call to fire event on Activity
                 mListener.onClick(Constants.TEXT_TO_SPEECH)
             }

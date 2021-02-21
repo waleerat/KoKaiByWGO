@@ -69,17 +69,11 @@ class LevelsFragmentAdapter(
                     onClickListener!!.onClick(itemBinding.root)
                 } else {
 
-                    when (mMenuKey) {
-                        "QUIZ" -> {
-                            // Go to Quiz
-                        }
-                        "LESSON" ->  {
-                            val intent = Intent(context, ChapterActivity::class.java)
-                            intent.putExtra(Constants.INTENT_LEVEL_ID, rowData.level_id.toString())
-                            intent.putExtra(Constants.INTENT_LEVEL_NAME, rowData.level_name)
-                            context.startActivity(intent)
-                        }
-                    }
+                    Constants.LESSON_TEXT = rowData.level_name
+                    val intent = Intent(context, ChapterActivity::class.java)
+                    intent.putExtra(Constants.INTENT_LEVEL_ID, rowData.level_id.toString())
+                    intent.putExtra(Constants.INTENT_LEVEL_NAME, rowData.level_name)
+                    context.startActivity(intent)
 
                 }
             }

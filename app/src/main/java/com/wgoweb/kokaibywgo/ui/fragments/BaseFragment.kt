@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.DialogProgressBinding
+import com.wgoweb.kokaibywgo.utils.Constants
 import java.util.*
 
 
@@ -61,7 +62,7 @@ open class BaseFragment : Fragment() , TextToSpeech.OnInitListener{
             // set US English as language for tts
             //val result = tts!!.setLanguage(Locale.US)
             val result = tts!!.setLanguage(Locale.forLanguageTag("TH"))
-            tts!!.setSpeechRate(0.8f)
+            tts!!.setSpeechRate(Constants.SPEECH_DELAY)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "The Language specified is not supported!")
             }

@@ -32,7 +32,7 @@ class ChapterActivity : BaseActivity() {
         }
         if (intent.hasExtra(Constants.INTENT_LEVEL_NAME)) {
             mLevelName = intent.getStringExtra(Constants.INTENT_LEVEL_NAME)!!
-            binding.activityTitle.text = mLevelName
+            //binding.activityTitle.text = mLevelName
         }
         //Log.i("Get Chapter from >>", "$mLevelId   $mLevelName")
         setupActionBar()
@@ -79,7 +79,7 @@ class ChapterActivity : BaseActivity() {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = mLevelName
+        binding.tvTitle.text = Constants.LESSON_TEXT//mLevelName
 
         val actionBar = supportActionBar
         if (actionBar != null) {

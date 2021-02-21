@@ -53,6 +53,7 @@ class LevelListener {
     private fun getLevelItemsListForLessonFragment(fragment: LessonsFragment){
         //Log.i("Get collection >>", Constants.TBL_LEVELS)
         mFireStore.collection(Constants.COLLECTION_LEVEL)
+            .whereEqualTo("active", true)
             .orderBy("order_id")
             .get() // Will get the documents snapshots.
             .addOnSuccessListener { document ->
@@ -88,6 +89,7 @@ class LevelListener {
     private fun getLevelItemsListForQuizFragment(fragment: QuizFragment){
 
         mFireStore.collection(Constants.COLLECTION_LEVEL)
+            .whereEqualTo("active", true)
             .orderBy("order_id")
             .get() // Will get the documents snapshots.
             .addOnSuccessListener { document ->

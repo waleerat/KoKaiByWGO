@@ -21,6 +21,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.DialogCustomBackConfirmationBinding
 import com.wgoweb.kokaibywgo.databinding.DialogProgressBinding
+import com.wgoweb.kokaibywgo.utils.Constants
 import java.io.IOException
 import java.util.*
 import kotlin.math.roundToInt
@@ -42,9 +43,17 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_go_to_home -> {
+            val i = Intent(applicationContext, MainActivity::class.java)
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            i.putExtra("EXIT", true)
+            startActivity(i)
+            finish()
+            /*
             finish()
             val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            startActivity(intent)*/
             true
         }
         else -> super.onOptionsItemSelected(item)
@@ -237,7 +246,7 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
             // set US English as language for tts
             //val result = tts!!.setLanguage(Locale.US)
             val result = tts!!.setLanguage(Locale.forLanguageTag("TH"))
-            tts!!.setSpeechRate(0.8f)
+            tts!!.setSpeechRate(Constants.SPEECH_DELAY)
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                 Log.e("TTS", "The Language specified is not supported!")
             }

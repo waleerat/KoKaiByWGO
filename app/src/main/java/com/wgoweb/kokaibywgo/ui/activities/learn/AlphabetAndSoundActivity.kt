@@ -129,7 +129,7 @@ class AlphabetAndSoundActivity : BaseActivity(),View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        //binding.tvTitle.text = Resources.getSystem().getString(R.string.menu_alphabet_and_vowel)
+        binding.tvTitle.text = Constants.LEARN_ALPHABET_AND_SOUND_TEXT
 
         val actionBar = supportActionBar
         if (actionBar != null) {

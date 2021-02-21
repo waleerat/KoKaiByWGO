@@ -27,6 +27,7 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mSentenceItems: ArrayList<SentenceModel>
     private lateinit var mQuizChoices : ArrayList<Int>
     private  var mQuizAnswer: Int = 0
+    private var isEmptyQuiz: Boolean = true
 
     private val mAmountOfRows: Int = 44
     private var mMaxQuiz: Int = 5
@@ -34,14 +35,33 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswer: Int = 0
 
+    var mLevelId: String = ""
+    var mLevelName: String = ""
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityQuizLessonBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupActionBar()
 
+        if (intent.hasExtra(Constants.INTENT_LEVEL_ID)) {
+            mLevelId = intent.getStringExtra(Constants.INTENT_LEVEL_ID)!!
+            Constants.LEVEL_ID = mLevelId
+        }
+        if (intent.hasExtra(Constants.INTENT_LEVEL_NAME)) {
+            mLevelName = intent.getStringExtra(Constants.INTENT_LEVEL_NAME)!!
+            //binding.activityTitle.text = mLevelName
+        }
+
+        mSentenceItems = ArrayList<SentenceModel>() // Hide the progress dialog.
+
+        // Show the progress dialog.
+        showProgressDialog(resources.getString(R.string.please_wait))
         SentenceListener().getDataListItemForQuizActivity(this@QuizLessonActivity)
-
+        // Hide the progress dialog.
+        hideProgressDialog()
         binding.choiceOne.setOnClickListener(this)
         binding.choiceTwo.setOnClickListener(this)
         binding.choiceThree.setOnClickListener(this)
@@ -57,12 +77,25 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
         mSelectedOptionPosition = 0
         mCorrectAnswer = 0
         if (mSentenceItems.size > 0) {
+            isEmptyQuiz = false
             loadQuiz()
         }
     }
 
-    fun successItemsList(itemsList: java.util.ArrayList<SentenceModel>){
+    @RequiresApi(Build.VERSION_CODES.M)
+    fun successItemsList(itemsList: ArrayList<SentenceModel>){
         mSentenceItems = itemsList
+
+        if (mSentenceItems.size == 0 ) {
+            isEmptyQuiz = true
+            showErrorSnackBar(Constants.ERROR_EMPTY_QUIZ, true)
+            binding.parentQuizLesson.visibility = View.GONE
+            finish()
+        } else {
+            isEmptyQuiz = false
+            loadQuiz()
+            binding.parentQuizLesson.visibility = View.VISIBLE
+        }
     }
 
     // call this function from SectionListener
@@ -77,22 +110,23 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
     @RequiresApi(Build.VERSION_CODES.M)
     @Suppress("DEPRECATION")
     private fun loadQuiz(){
-        binding.progressBar.progress = mCurrentPostition
+        if (!isEmptyQuiz) {
+            binding.progressBar.progress = mCurrentPostition
 
-        binding.progressBar.max = mMaxQuiz
-        binding.textViewProgressBar.text = "$mCurrentPostition" + "/" + binding.progressBar.max
+            binding.progressBar.max = mMaxQuiz
+            binding.textViewProgressBar.text = "$mCurrentPostition" + "/" + binding.progressBar.max
 
-        mQuizChoices = Constants.generateChoices(mAmountOfRows)  // Get Choices
-        mQuizAnswer = Constants.getAnswer()  // Int 1 to 4
-        setQuizChoiceToLayout()
+            mQuizChoices = Constants.generateChoices(mAmountOfRows)  // Get Choices
+            mQuizAnswer = Constants.getAnswer()  // Int 1 to 4
+            setQuizChoiceToLayout()
 
-        Handler().postDelayed(
-            {
-                speakOut(mSentenceItems[mQuizChoices[mQuizAnswer]].sentence_text)
+            Handler().postDelayed(
+                {
+                    speakOut(mSentenceItems[mQuizChoices[mQuizAnswer]].sentence_text)
 
-            },
-            1000 )
-
+                },
+                1000 )
+        }
     }
 
 

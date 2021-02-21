@@ -142,20 +142,16 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
 
     private fun checkDisableButton(){
         if (mCurrentPostition == 0) {
-            Log.i("checkDisableButton >>", "Case 2")
             controlPlayBackAndPlayNextButton("btnPreviousSound", false)
             controlPlayBackAndPlayNextButton("btnNextSound", true)
         } else if (mCurrentPostition > mAlphabetItems.size-1) {
-            Log.i("checkDisableButton >>", "Case 1")
             controlPlayBackAndPlayNextButton("btnPreviousSound", true)
             controlPlayBackAndPlayNextButton("btnNextSound", false)
         } else if (mCurrentPostition >= 0 || mCurrentPostition < mAlphabetItems.size-1) {
-            Log.i("checkDisableButton >>", "Case 2")
             controlPlayBackAndPlayNextButton("btnPreviousSound", true)
             controlPlayBackAndPlayNextButton("btnNextSound", true)
 
         } else {
-            Log.i("checkDisableButton >>", "Case 3")
             controlPlayBackAndPlayNextButton("btnPreviousSound", true)
             controlPlayBackAndPlayNextButton("btnNextSound", true)
         }
@@ -222,7 +218,7 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = "Learn Alphabet"
+        binding.tvTitle.text = Constants.LEARN_ALPHABET_TEXT
 
         val actionBar = supportActionBar
         if (actionBar != null) {

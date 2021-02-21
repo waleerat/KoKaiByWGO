@@ -1,5 +1,6 @@
 package com.wgoweb.kokaibywgo.ui.activities
 
+import android.R.array
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -7,7 +8,6 @@ import android.os.Handler
 import androidx.annotation.RequiresApi
 import com.google.gson.Gson
 import com.wgoweb.kokaibywgo.databinding.ActivitySplashBinding
-import com.wgoweb.kokaibywgo.firebase.SplashScreenListener
 import com.wgoweb.kokaibywgo.models.ChapterModel
 import com.wgoweb.kokaibywgo.models.LevelModel
 import com.wgoweb.kokaibywgo.models.SectionModel
@@ -32,7 +32,7 @@ class SplashActivity : BaseActivity() {
 
         Handler().postDelayed(
             {
-                //clearReference()  // For testing
+                clearReference()  // For testing
                 //SplashScreenListener().getAllDataFromFirestros(this@SplashActivity)
                 startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                 finish()

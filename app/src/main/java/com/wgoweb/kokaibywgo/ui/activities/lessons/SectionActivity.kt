@@ -81,7 +81,7 @@ class SectionActivity : BaseActivity() {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = mChapterName
+        binding.tvTitle.text = Constants.LESSON_TEXT//mChapterName
 
         val actionBar = supportActionBar
         if (actionBar != null) {

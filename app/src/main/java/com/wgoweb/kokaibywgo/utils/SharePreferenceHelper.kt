@@ -37,7 +37,7 @@ class SharePreferenceHelper {
 
         val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
         val jsonString: String = sharedPreferences.getString(Constants.REF_LEVEL_PREFERENCE, "")!!
-         Log.i("getLevelPreference >>", jsonString)
+        // Log.i("getLevelPreference >>", jsonString)
         if (jsonString != "") {
             val gsonBuilder = GsonBuilder().serializeNulls()
             val gson = gsonBuilder.create()
@@ -53,7 +53,7 @@ class SharePreferenceHelper {
         val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
          val jsonString: String = sharedPreferences.getString(Constants.REF_CHAPTER_PREFERENCE, "")!!
 
-         Log.i("getChapterReference >>", jsonString)
+        // Log.i("getChapterReference >>", jsonString)
         if (jsonString != "") {
             val gsonBuilder = GsonBuilder().serializeNulls()
             val gson = gsonBuilder.create()

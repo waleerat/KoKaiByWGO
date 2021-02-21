@@ -10,25 +10,53 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KoKaiByWGO">
 
-        <activity android:name=".ui.activities.learn.AlphabetAndSoundActivity" />
-        <activity android:name=".ui.activities.TextToSpeechActivity" />
-        <activity android:name=".ui.activities.lessons.SectionActivity" />
-        <activity android:name=".ui.activities.HomeActivity" />
-        <activity android:name=".ui.activities.MainActivity" />
-        <activity android:name=".ui.activities.lessons.ChapterActivity" />
-        <activity android:name=".ui.activities.learn.AllVowelsActivity" />
-        <activity android:name=".ui.activities.learn.AllAlphabetsActivity" />
-        <activity android:name=".ui.activities.quiz.QuizVowelActivity" />
-        <activity android:name=".ui.activities.learn.LearnVowelsActivity" />
-        <activity android:name=".ui.activities.learn.LearnAlphabetsActivity" />
-        <activity android:name=".ui.activities.ResultActivity" />
-        <activity android:name=".ui.activities.quiz.QuizAlphabetActivity" />
+        <activity
+            android:name=".ui.activities.learn.AlphabetAndSoundActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activities.TextToSpeechActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.lessons.SectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.lessons.ChapterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.learn.AllVowelsActivity" />
+        <activity
+            android:name=".ui.activities.learn.AllAlphabetsActivity" />
+        <activity
+            android:name=".ui.activities.quiz.QuizVowelActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.learn.LearnVowelsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.learn.LearnAlphabetsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.ResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.quiz.QuizAlphabetActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.lessons.SentenceActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.KoKaiByWGO.NoActionBar" />
-        <activity android:name=".ui.activities.quiz.QuizLessonActivity"></activity>
+        <activity
+            android:name=".ui.activities.quiz.QuizLessonActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activities.SplashActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

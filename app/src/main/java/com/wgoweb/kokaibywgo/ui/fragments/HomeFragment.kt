@@ -1,16 +1,21 @@
 package com.wgoweb.kokaibywgo.ui.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.FragmentHomeBinding
 import com.wgoweb.kokaibywgo.ui.activities.learn.AlphabetAndSoundActivity
+import com.wgoweb.kokaibywgo.ui.activities.learn.LearnVowelsActivity
+import com.wgoweb.kokaibywgo.ui.activities.quiz.QuizAlphabetActivity
+import com.wgoweb.kokaibywgo.utils.Constants
 
-class HomeFragment : Fragment(), View.OnClickListener {
+class HomeFragment : BaseFragment(), View.OnClickListener {
 
     private lateinit var binding : FragmentHomeBinding
 
@@ -25,15 +30,25 @@ class HomeFragment : Fragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
-        binding.btnAlphabetAndSound.setOnClickListener(this)
-        // Code here
+
+        binding.btnSpeak.setOnClickListener(this)
+        binding.btnLearnAlphabetPlay.setOnClickListener(this)
+
     }
 
     override fun onClick(v: View?) {
         when(v!!.id) {
-            R.id.btn_alphabet_and_sound -> {
-                val intent = Intent(context, AlphabetAndSoundActivity::class.java)
-                startActivity(intent)
+            R.id.btnSpeak -> {
+                if (binding.etEnteredText.text.isEmpty()) {
+                    Toast.makeText(this.requireActivity(), "Enter a text to speak.", Toast.LENGTH_SHORT)
+                        .show()
+                } else {
+                    speakOut(binding.etEnteredText.text.toString())
+                }
+            }
+
+            R.id.btn_learn_alphabet_play -> {
+                speakOut(Constants.SUGGEST_TO_TYPE_SENTENCE)
             }
         }
     }

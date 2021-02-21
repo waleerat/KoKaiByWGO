@@ -50,7 +50,12 @@
     <string name="menu_learn_alphabet">ตัวอักษรไทย</string>
     <string name="menu_quiz_alphabet">แบบทดสอบตัวอักษรไทย</string>
     <string name="menu_learn_vowel">สระไทย</string>
-    <string name="menu_quiz_vowel">ทดสอบสระไทย</string>
+    <string name="menu_quiz_vowel">แบบทดสอบสระไทย</string>
     <string name="menu_alphabet_and_vowel">ตัวอักษรและสระไทย</string>
+
+    <!--Speech-->
+    <string name="speech_title">พิมพ์ประโยคที่ต้องการออกเสียง</string>
+    <string name="speech_place_holder">พิมพ์ประโยค ..</string>
+    <string name="speech_submit_button">กดฟังเสียง</string>
 
 </resources>
