@@ -32,7 +32,7 @@ class SplashActivity : BaseActivity() {
 
         Handler().postDelayed(
             {
-                clearReference()  // For testing
+                //clearReference()  // For testing
                 //SplashScreenListener().getAllDataFromFirestros(this@SplashActivity)
                 startActivity(Intent(this@SplashActivity, MainActivity::class.java))
                 finish()

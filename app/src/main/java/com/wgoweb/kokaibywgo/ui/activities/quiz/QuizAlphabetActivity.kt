@@ -24,7 +24,7 @@ class QuizAlphabetActivity : BaseActivity(), View.OnClickListener {
 
     private val mAmountOfRows: Int = 44
     private var mMaxQuiz: Int = 5
-    private var mCurrentPostition: Int = 1
+    private var mCurrentPosition: Int = 1
     private var mSelectedOptionPosition: Int = 0
     private var mCorrectAnswer: Int = 0
 
@@ -50,7 +50,7 @@ class QuizAlphabetActivity : BaseActivity(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
         mMaxQuiz = Constants.MAX_QUIZ_FOR_ALPHABETS
-        mCurrentPostition = 1
+        mCurrentPosition = 1
         mSelectedOptionPosition = 0
         mCorrectAnswer = 0
         if (mAlphabetItems.size > 0) {
@@ -62,16 +62,16 @@ class QuizAlphabetActivity : BaseActivity(), View.OnClickListener {
     @RequiresApi(Build.VERSION_CODES.M)
     @Suppress("DEPRECATION")
     private fun loadQuiz(){
-        binding.progressBar.progress = mCurrentPostition
+        binding.progressBar.progress = mCurrentPosition
 
         binding.progressBar.max = mMaxQuiz
-        binding.textViewProgressBar.text = "$mCurrentPostition" + "/" + binding.progressBar.max
+        binding.textViewProgressBar.text = "$mCurrentPosition" + "/" + binding.progressBar.max
 
         mQuizChoices = Constants.generateChoices(mAmountOfRows)  // Get Choices
         mQuizAnswer = Constants.getAnswer()  // Int 1 to 4
         setQuizChoiceToLayout()
 
-        if (mCurrentPostition == 1 ) {
+        if (mCurrentPosition == 1 ) {
             Handler().postDelayed(
                 {
                     playSound( mAlphabetItems[mQuizChoices[mQuizAnswer]].sound)
@@ -90,9 +90,7 @@ class QuizAlphabetActivity : BaseActivity(), View.OnClickListener {
         //Log.i("Choices Log >>",  mAlphabetItems[mQuizChoices[mQuizAnswer]].vowelThai + " " + mQuizAnswer)
 
         for ((choiceNumber, row) in mQuizChoices.withIndex()) {
-
             borderDefaultView()
-
             when(choiceNumber) {
                 0 -> {
                     binding.choiceOne.setImageResource(mAlphabetItems[row].image)
@@ -151,12 +149,12 @@ class QuizAlphabetActivity : BaseActivity(), View.OnClickListener {
             //showErrorSnackBar("You have Correct" + mCorrectAnswer.toString() + " Answer" + mAlphabetItems[mQuizChoices[mQuizAnswer]].vowelThai, true)
         }
 
-        mCurrentPostition++
-
+        mCurrentPosition++
+        enableChoiceButtons(false)
         Handler().postDelayed(
             {
-
-                if (mCurrentPostition <= mMaxQuiz) {
+                enableChoiceButtons(true)
+                if (mCurrentPosition <= mMaxQuiz) {
                     loadQuiz()
                 } else {
                     val intent = Intent(this, ResultActivity::class.java)
@@ -168,7 +166,13 @@ class QuizAlphabetActivity : BaseActivity(), View.OnClickListener {
             },
             2500
         )
+    }
 
+    private fun enableChoiceButtons(isEnable: Boolean){
+        binding.choiceOne.isEnabled = isEnable
+        binding.choiceTwo.isEnabled = isEnable
+        binding.choiceThree.isEnabled = isEnable
+        binding.choiceFour.isEnabled = isEnable
     }
 
 

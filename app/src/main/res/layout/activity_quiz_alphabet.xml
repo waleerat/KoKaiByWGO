@@ -163,7 +163,7 @@
                 android:id="@+id/replay_answer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_play_again"
+                android:src="@drawable/sound_on"
                 android:background="@color/colorWhite"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
@@ -172,7 +172,4 @@
         </LinearLayout>
     </LinearLayout>
     <!--END-->
-
-
-
     </RelativeLayout>

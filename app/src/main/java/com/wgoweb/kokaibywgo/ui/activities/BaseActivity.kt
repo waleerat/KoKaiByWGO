@@ -220,7 +220,7 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
 
      fun stopSound() {
          if (mediaPlayer.isPlaying != null) {
-             mediaPlayer.stop(); // or mp.pause();
+             mediaPlayer.stop();
              mediaPlayer.release();
          }
     }
@@ -264,6 +264,13 @@ open class BaseActivity : AppCompatActivity() , TextToSpeech.OnInitListener{
             tts!!.shutdown()
         }
         super.onDestroy()
+    }
+
+    public fun isDoingSpeech() : Boolean {
+        if (tts != null) {
+           return true
+        }
+        return false
     }
 
     /**

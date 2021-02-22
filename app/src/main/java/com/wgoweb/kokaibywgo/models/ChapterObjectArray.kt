@@ -1,5 +1,5 @@
 package com.wgoweb.kokaibywgo.models
-data class LevelItems(
+/*data class LevelItems(
     val level_id: String?,
     val level_code: String,
     val level_description: String,
@@ -36,7 +36,7 @@ data class SentenceItems (
     var words: List<String>
 )
 
-/*
+
 data class ChapterObjectArray (
 
  var objectsArray: ArrayList<ChapterItems> = arrayListOf(

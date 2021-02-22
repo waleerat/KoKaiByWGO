@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<!--Middle Sound-->
+    <LinearLayout
+        android:id="@+id/llMiddleSound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding = "5dp"
+        android:gravity="center"
+        >
+        <ImageView
+            android:id="@+id/iv_vowel_middle_sound"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Go next"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/sara_01"
+            android:scaleType="fitXY"/>
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_middle_sound_one"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_one_color"
+            android:text="กา"/>
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_middle_sound_two"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_two_color"
+            android:text="กา"/>
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_middle_sound_three"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_three_color"
+            android:text="กา"/>
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_middle_sound_four"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_four_color"
+            android:text="กา"/>
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_middle_sound_five"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_five_color"
+            android:text="กา"/>
+    </LinearLayout>
+
+    <!--Middle Sound-->
+
+
+
+    <!--High Sound-->
+    <LinearLayout
+        android:id="@+id/llHighSound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding = "5dp"
+        android:gravity="center"
+        >
+        <ImageView
+            android:id="@+id/iv_vowel_high_sound"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Go next"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/sara_01"
+            android:scaleType="fitXY"/>
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_high_sound_five"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_five_color"
+            android:text="กา"/>
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_high_sound_two"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_two_color"
+            android:text="กา"/>
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_high_sound_three"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_three_color"
+            android:text="กา"/>
+
+
+    </LinearLayout>
+    <!--High Sound-->
+
+    <!--High Sound-->
+    <LinearLayout
+        android:id="@+id/llLowSound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding = "5dp"
+        android:gravity="center"
+        >
+        <ImageView
+            android:id="@+id/iv_vowel_low_sound"
+            android:layout_width="60dp"
+            android:layout_height="75dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="Go next"
+            android:foreground="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+            android:src="@drawable/sara_01"
+            android:scaleType="fitXY"/>
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_low_sound_one"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_one_color"
+            android:text="กา"/>
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_low_sound_three"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_three_color"
+            android:text="กา"/>
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/tv_low_sound_four"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/sound_four_color"
+            android:text="กา"/>
+    </LinearLayout>
+    <!--High Sound-->
+
+</LinearLayout>

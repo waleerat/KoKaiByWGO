@@ -11,7 +11,12 @@ data class VowelItem (
     var sound: String,
     var vowelThai: String,
     var vowelEnglish: String,
-    var reading_sound: String,
+    var isShowInSoundActivity: Boolean,
+    var soundLevelOne: String,
+    var soundLevelTwo: String,
+    var soundLevelThree: String,
+    var soundLevelFour: String,
+    var soundLevelFive: String,
     var writing_pattern: String
 )
 
@@ -22,6 +27,11 @@ data class VowelModel (
     var sound: String,
     var vowelThai: String,
     var vowelEnglish: String,
-    var reading_sound: String,
+    var isShowInSoundActivity: Boolean,
+    var soundLevelOne: String,
+    var soundLevelTwo: String,
+    var soundLevelThree: String,
+    var soundLevelFour: String,
+    var soundLevelFive: String,
     var writing_pattern: String?
 )

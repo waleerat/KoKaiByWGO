@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KoKaiByWGO">
-
+        <activity android:name=".ui.activities.sounds.AlphabetBySoundActivity"></activity>
+        <activity android:name=".ui.activities.sounds.SoundFromSentenceActivity" />
         <activity
             android:name=".ui.activities.learn.AlphabetAndSoundActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.TextToSpeechActivity"
             android:screenOrientation="portrait" />
@@ -28,10 +29,8 @@
         <activity
             android:name=".ui.activities.lessons.ChapterActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.activities.learn.AllVowelsActivity" />
-        <activity
-            android:name=".ui.activities.learn.AllAlphabetsActivity" />
+        <activity android:name=".ui.activities.learn.AllVowelsActivity" />
+        <activity android:name=".ui.activities.learn.AllAlphabetsActivity" />
         <activity
             android:name=".ui.activities.quiz.QuizVowelActivity"
             android:screenOrientation="portrait" />
@@ -53,11 +52,11 @@
             android:theme="@style/Theme.KoKaiByWGO.NoActionBar" />
         <activity
             android:name=".ui.activities.quiz.QuizLessonActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.SplashActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

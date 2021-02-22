@@ -6,15 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.wgoweb.kokaibywgo.databinding.ItemListGridAlphabetSoundLevelBinding
 import com.wgoweb.kokaibywgo.databinding.ItemListGridAlphabetsBinding
 import com.wgoweb.kokaibywgo.databinding.ItemListGridVowelsBinding
 import com.wgoweb.kokaibywgo.models.AlphabetModel
 import com.wgoweb.kokaibywgo.models.VowelModel
 import com.wgoweb.kokaibywgo.ui.activities.learn.AlphabetAndSoundActivity
+import com.wgoweb.kokaibywgo.ui.activities.sounds.AlphabetBySoundActivity
+import com.wgoweb.kokaibywgo.utils.Constants
 import com.wgoweb.kokaibywgo.utils.GlobalFunctions
 import java.io.IOException
 
-
+/** * Horizontal Alphabets Adapter * */
 class HorizontalAlphabetsAdapter(val context: Context,
                                 val items: ArrayList<AlphabetModel>,
                                  private val listener: AlphabetAndSoundActivity.OnClickListener
@@ -51,6 +54,7 @@ class HorizontalAlphabetsAdapter(val context: Context,
             GlobalFunctions(context).loadPictureFromDrawableId(rowData.image, itemBinding.ivItemImage)
 
             itemBinding.itemRowLayout.setOnClickListener {
+                Constants.SELECTED_ALPHABET = rowData.alphabet
                 mListener.onAlphabetClick(rowData)
             }
         }
@@ -58,7 +62,44 @@ class HorizontalAlphabetsAdapter(val context: Context,
 
 }
 
+/** * Horizontal Alphabets SoundLevel Adapter * */
+class HorizontalAlphabetsSoundLevelAdapter(val context: Context,
+                                 val items: ArrayList<AlphabetModel>,
+                                 private val listener: AlphabetBySoundActivity.OnClickListener
+): RecyclerView.Adapter<HorizontalAlphabetsSoundLevelAdapter.GetViewBindingHolder>() {
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GetViewBindingHolder {
+        val itemBinding = ItemListGridAlphabetSoundLevelBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return GetViewBindingHolder(context, itemBinding, listener)
+    }
+
+    override fun onBindViewHolder(holder: GetViewBindingHolder, position: Int) {
+        val rowBinding: AlphabetModel = items[position]
+        holder.bind(rowBinding)
+    }
+
+    override fun getItemCount(): Int = items.size
+
+    class GetViewBindingHolder(
+        val context: Context,
+        private val itemBinding: ItemListGridAlphabetSoundLevelBinding,
+        private val listener: AlphabetBySoundActivity.OnClickListener
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
+
+        private val mListener = listener
+
+        fun bind(rowData: AlphabetModel) {
+            GlobalFunctions(context).loadPictureFromDrawableId(rowData.image, itemBinding.ivItemImage)
+            itemBinding.itemRowLayout.setOnClickListener {
+                Constants.SELECTED_ALPHABET = rowData.alphabet
+                mListener.onAlphabetClick(rowData)
+            }
+        }
+    }
+
+}
+
+/** * Horizontal Vowel, * */
 class HorizontalVowelsAdapter (val context: Context,
                                val items: ArrayList<VowelModel>,
                                private val listener: AlphabetAndSoundActivity.OnClickListener
@@ -81,7 +122,6 @@ class HorizontalVowelsAdapter (val context: Context,
                                private val listener: AlphabetAndSoundActivity.OnClickListener
     ) : RecyclerView.ViewHolder(itemBinding.root) {
         // A global variable for OnClickListener interface.
-        private var onClickListener: View.OnClickListener? = null
         private val mListener = listener
 
         fun bind(rowData: VowelModel) {

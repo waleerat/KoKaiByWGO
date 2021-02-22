@@ -1,6 +1,7 @@
 package com.wgoweb.kokaibywgo.ui.activities.lessons
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -14,9 +15,11 @@ import com.wgoweb.kokaibywgo.databinding.ActivitySentenceBinding
 import com.wgoweb.kokaibywgo.firebase.SentenceListener
 import com.wgoweb.kokaibywgo.models.SentenceModel
 import com.wgoweb.kokaibywgo.ui.activities.BaseActivity
+import com.wgoweb.kokaibywgo.ui.activities.MainActivity
 import com.wgoweb.kokaibywgo.ui.activities.adapters.SentenceActivityAdapter
 import com.wgoweb.kokaibywgo.utils.Constants
 import com.wgoweb.kokaibywgo.utils.SharePreferenceHelper
+import kotlinx.coroutines.delay
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -26,7 +29,7 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
 
     var mSectionId: String = ""
     var mSectionName: String = ""
-    var mCurrentPostition: Int = 0
+    var mCurrentPosition: Int = 0
 
     private lateinit var  mSentenceItems: ArrayList<SentenceModel>
 
@@ -48,18 +51,17 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
         }
 
         setupActionBar()
-        // Show the progress dialog.
-        showProgressDialog(resources.getString(R.string.please_wait))
-        SentenceListener().getDataListItemForSentenceActivity(this@SentenceActivity, mSectionId)
-
 
         binding.tvNoItemsFound.visibility = View.GONE
-        disabledOrEnableAutoPlayButton("btnPauseSound", false)
         binding.btnPreviousSound.setOnClickListener(this)
         binding.btnAutoSound.setOnClickListener(this)
         binding.btnPauseSound.setOnClickListener(this)
         binding.btnNextSound.setOnClickListener(this)
-            // Log.i("Get Sentence from >>", "$mSectionId   $mSectionName")
+
+        // Show the progress dialog.
+        showProgressDialog(resources.getString(R.string.please_wait))
+        SentenceListener().getDataListItemForSentenceActivity(this@SentenceActivity, mSectionId)
+        disabledOrEnableAutoPlayButton("btnPauseSound", false)
     }
 
 
@@ -104,39 +106,38 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_previous_sound -> {
-                if (mCurrentPostition > 0 ) {
-                    mCurrentPostition--
-                    getVowelItem()
+                if (mCurrentPosition > 0 ) {
+                    mCurrentPosition--
+                    getSentenceItems()
                 }
-                checkDisableButton()
             }
 
             R.id.btn_auto_sound -> {
-                controlPlayBackAndPlayNextButton("btnPreviousSound", false)
-                controlPlayBackAndPlayNextButton("btnNextSound", false)
+                enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+                enablePlayBackAndPlayNextButton("btnNextSound", false)
                 getAutoPlayItem()
             }
 
             R.id.btn_pause_sound -> {
                 if (restTimer != null) {
                     restTimer!!.cancel()
-                    mCurrentPostition--
-                    controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-                    controlPlayBackAndPlayNextButton("btnNextSound", true)
+                    mCurrentPosition--
+                    enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+                    enablePlayBackAndPlayNextButton("btnNextSound", true)
                     enabledAutoPlayButton()
-
                 }
                 checkDisableButton()
             }
 
             R.id.btn_next_sound , R.id.iv_vowel -> {
-                if (mCurrentPostition == mSentenceItems.size-1 ) {
-                    mCurrentPostition = 0
-                } else {
-                    mCurrentPostition++
-                }
-                getVowelItem()
-                checkDisableButton()
+                    getSentenceItems()
+                    if (mCurrentPosition == mSentenceItems.size-1 ) {
+                        mCurrentPosition = 0
+                    } else {
+                        mCurrentPosition++
+                    }
+                   // checkDisableButton()
+
             }
         }
     }
@@ -146,47 +147,72 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
      * */
 
     fun playCurrentSentence(){
-        if (mCurrentPostition >= 0  && mCurrentPostition <= mSentenceItems.size-1) {
-            speakOut(mSentenceItems[mCurrentPostition].sentence_text)
+        if (mCurrentPosition >= 0  && mCurrentPosition <= mSentenceItems.size-1) {
+            speakOut(mSentenceItems[mCurrentPosition].sentence_text)
         }
     }
 
     @Suppress("DEPRECATION")
-    private fun getVowelItem(){ 
-        if (mCurrentPostition == 0) {
+    private fun getSentenceItems(){
+        setEnablePreviousAndNextSoundButton(false)
+        val timerInMinutes = timerPerSentence()
+        if (mCurrentPosition == 0) {
             Handler().postDelayed({
                 playCurrentSentence()
             },1000 )
         } else {
             playCurrentSentence()
         }
-
+        // Enable buttons after speech
+        Handler().postDelayed({
+            setEnablePreviousAndNextSoundButton(true)
+            checkDisableButton()
+        },(timerInMinutes * 1000.toLong()))
     }
 
     private fun getAutoPlayItem(){
         val timerInMinutes = timerPerSentence()
+        val minuteLong: Long = timerInMinutes * 1000.toLong()
 
-        restTimer = object : CountDownTimer((mSentenceItems.size * (timerInMinutes * 1000)).toLong(),(timerInMinutes * 1000).toLong()) {
+        restTimer = object : CountDownTimer((mSentenceItems.size * minuteLong),minuteLong) {
+            @Suppress("DEPRECATION")
             override fun onTick(millisUntilFinished: Long) {
-                if (mCurrentPostition <= mSentenceItems.size-1) {
+                setEnablePreviousAndNextSoundButton(false)
+                Log.i("Disable >>", "setEnablePreviousAndNextSoundButton(false)")
+                if (mCurrentPosition <= mSentenceItems.size-1) {
                     // Disable Button
                     disabledAutoPlayButton()
                     playCurrentSentence() 
-                    mCurrentPostition++
-                    if (mCurrentPostition > mSentenceItems.size-1) {
-                        mCurrentPostition = 0
-
+                    mCurrentPosition++
+                    if (mCurrentPosition > mSentenceItems.size-1) {
+                        mCurrentPosition = 0
                     }
                 }
             }
             override fun onFinish() {
-                if (mCurrentPostition > mSentenceItems.size-1) {
-                    controlPlayBackAndPlayNextButton("btnPreviousSound", false)
-                    controlPlayBackAndPlayNextButton("btnNextSound", true)
+                setEnablePreviousAndNextSoundButton(true)
+                checkDisableButton()
+                if (mCurrentPosition > mSentenceItems.size-1) {
+                    enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+                    enablePlayBackAndPlayNextButton("btnNextSound", true)
                     enabledAutoPlayButton()
                 }
             }
         }.start()
+    }
+
+    /** Disable button until speech finish*/
+    fun setEnablePreviousAndNextSoundButton(isEnable: Boolean) {
+        if (isEnable) {
+            binding.btnPreviousSound.isEnabled = true
+            binding.btnNextSound.isEnabled = true
+        } else {
+            Log.i("BackAndPlayNext >>", "false")
+            binding.btnPreviousSound.isEnabled = false
+            binding.btnNextSound.isEnabled = false
+            enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+            enablePlayBackAndPlayNextButton("btnNextSound", false)
+        }
     }
 
     fun  timerPerSentence() : Int{
@@ -199,45 +225,49 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun checkDisableButton(){
-        if (mCurrentPostition == 0) {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", false)
-            controlPlayBackAndPlayNextButton("btnNextSound", true)
-        } else if (mCurrentPostition > mSentenceItems.size-1) {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-            controlPlayBackAndPlayNextButton("btnNextSound", false)
-        } else if (mCurrentPostition >= 0 || mCurrentPostition < mSentenceItems.size-1) {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-            controlPlayBackAndPlayNextButton("btnNextSound", true)
+        if (mCurrentPosition == 0) {
+            enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+            enablePlayBackAndPlayNextButton("btnNextSound", true)
+        } else if (mCurrentPosition > mSentenceItems.size-1) {
+            enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+            enablePlayBackAndPlayNextButton("btnNextSound", false)
+        } else if (mCurrentPosition >= 0 || mCurrentPosition < mSentenceItems.size-1) {
+            enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+            enablePlayBackAndPlayNextButton("btnNextSound", true)
 
         } else {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-            controlPlayBackAndPlayNextButton("btnNextSound", true)
+            enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+            enablePlayBackAndPlayNextButton("btnNextSound", true)
         }
     }
 
-
-    private fun controlPlayBackAndPlayNextButton(buttonViwId: String, isEnable: Boolean){
+    private fun enablePlayBackAndPlayNextButton(buttonViwId: String, isEnable: Boolean){
         when(buttonViwId) {
             "btnPreviousSound" -> {
                 if (isEnable) {
                     var drawable = ContextCompat.getDrawable(this@SentenceActivity, R.drawable.tts_play_back)
                     binding.btnPreviousSound.setImageDrawable(drawable)
+                    binding.btnPreviousSound.isEnabled = true
                 } else {
                     var drawable = ContextCompat.getDrawable(this@SentenceActivity, R.drawable.tts_play_back_disable)
                     binding.btnPreviousSound.setImageDrawable(drawable)
+                    binding.btnPreviousSound.isEnabled = false
                 }
             }
             "btnNextSound" -> {
                 if (isEnable) {
                     var drawable = ContextCompat.getDrawable(this@SentenceActivity, R.drawable.tts_play_next)
                     binding.btnNextSound.setImageDrawable(drawable)
+                    binding.btnNextSound.isEnabled = true
                 } else {
                     var drawable = ContextCompat.getDrawable(this@SentenceActivity, R.drawable.tts_play_next_disable)
                     binding.btnNextSound.setImageDrawable(drawable)
+                    binding.btnNextSound.isEnabled = false
                 }
             }
         }
     }
+
 
     private fun disabledOrEnableAutoPlayButton(buttonViwId: String, isEnable: Boolean){
         when(buttonViwId) {
@@ -287,6 +317,9 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_topbar_back_arrow)
         }
         binding.toolbarCustom.setNavigationOnClickListener {
+            if (restTimer != null) {
+                restTimer!!.cancel()
+            }
             onBackPressed()
         }
     }

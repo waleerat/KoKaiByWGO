@@ -42,20 +42,25 @@
     <string name="action_bar_chapter">บทเรียน</string>
 
     <string name="no_item_found">ไม่พบข้อมูล</string>
-    <string name="menu_main_home">HOME</string>
+
+    <string name="menu_main_home">เทียบเสียง</string>
     <string name="menu_main_lesson">บทเรียน</string>
     <string name="menu_main_quiz">แบบทดสอบ</string>
-    <string name="menu_main_setting">การตั้งค่า</string>
+    <string name="menu_main_setting">ช่วยเหลือ</string>
 
     <string name="menu_learn_alphabet">ตัวอักษรไทย</string>
     <string name="menu_quiz_alphabet">แบบทดสอบตัวอักษรไทย</string>
     <string name="menu_learn_vowel">สระไทย</string>
     <string name="menu_quiz_vowel">แบบทดสอบสระไทย</string>
     <string name="menu_alphabet_and_vowel">ตัวอักษรและสระไทย</string>
+    <string name="menu_sound_height">เสียงสูง</string>
+    <string name="menu_sound_middle">เสียงกลาง</string>
+    <string name="menu_sound_low">เสียงต่ำ</string>
 
     <!--Speech-->
     <string name="speech_title">พิมพ์ประโยคที่ต้องการออกเสียง</string>
     <string name="speech_place_holder">พิมพ์ประโยค ..</string>
     <string name="speech_submit_button">กดฟังเสียง</string>
+
 
 </resources>

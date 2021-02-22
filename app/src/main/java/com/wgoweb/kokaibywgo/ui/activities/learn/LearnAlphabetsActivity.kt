@@ -16,7 +16,7 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityLearnAlphabetsBinding
     private lateinit var mAlphabetItems: ArrayList<AlphabetModel>
-    private var mCurrentPostition: Int = 0
+    private var mCurrentPosition: Int = 0
     private var mCurrentSoundFileName: String = ""
 
     private var restTimer: CountDownTimer? = null
@@ -28,21 +28,23 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
         setContentView(binding.root)
         setupActionBar()
 
-        mAlphabetItems = Constants.getAlphabetItems(this)  // Get All Items
-        checkDisableButton()
-        disabledOrEnableAutoPlayButton("btnPauseSound", false)
+
         binding.ivAlphabet.setOnClickListener(this)
         binding.btnPreviousSound.setOnClickListener(this)
         binding.btnAutoSound.setOnClickListener(this)
         binding.btnPauseSound.setOnClickListener(this)
         binding.btnNextSound.setOnClickListener(this)
 
+        mAlphabetItems = Constants.getAlphabetItems(this)  // Get All Items
+        checkDisableButton()
+        disabledOrEnableAutoPlayButton("btnPauseSound", false)
+
     }
 
 
     override fun onResume() {
         super.onResume()
-        mCurrentPostition = 0
+        mCurrentPosition = 0
         if (mAlphabetItems.size > 0 ) {
             getAlphabetItem()
         }
@@ -52,39 +54,35 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_previous_sound -> {
-                if (mCurrentPostition > 0 ) {
-                    mCurrentPostition--
+                if (mCurrentPosition > 0 ) {
+                    mCurrentPosition--
                     getAlphabetItem()
                 }
-                checkDisableButton()
             }
 
             R.id.btn_auto_sound -> {
-                controlPlayBackAndPlayNextButton("btnPreviousSound", false)
-                controlPlayBackAndPlayNextButton("btnNextSound", false)
+                enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+                enablePlayBackAndPlayNextButton("btnNextSound", false)
                 getAutoPlayItem()
             }
 
             R.id.btn_pause_sound -> {
-                Log.i("btn_pause_sound >>", "if (restTimer != null) {")
                 if (restTimer != null) {
                     restTimer!!.cancel()
-                    mCurrentPostition--
-                    controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-                    controlPlayBackAndPlayNextButton("btnNextSound", true)
+                    mCurrentPosition--
+                    enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+                    enablePlayBackAndPlayNextButton("btnNextSound", true)
                     enabledAutoPlayButton()
-
                 }
-                checkDisableButton()
-            } 
+            }
 
 
 
             R.id.btn_next_sound , R.id.iv_alphabet -> {
-                if (mCurrentPostition == mAlphabetItems.size-1 ) {
-                    mCurrentPostition = 0
+                if (mCurrentPosition == mAlphabetItems.size-1 ) {
+                    mCurrentPosition = 0
                 } else {
-                    mCurrentPostition++
+                    mCurrentPosition++
                 }
                 checkDisableButton()
                 getAlphabetItem()
@@ -93,89 +91,111 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun getCurrentSoundAndImage(){
-        binding.ivAlphabet.setImageResource(mAlphabetItems[mCurrentPostition].image)
+        binding.ivAlphabet.setImageResource(mAlphabetItems[mCurrentPosition].image)
         setImageSize(binding.ivAlphabet, false)
-        mCurrentSoundFileName =  mAlphabetItems[mCurrentPostition].sound
+        mCurrentSoundFileName =  mAlphabetItems[mCurrentPosition].sound
     }
 
     @Suppress("DEPRECATION")
     private fun getAlphabetItem(){
         getCurrentSoundAndImage()
-        if (mCurrentPostition == 0) {
+        setEnablePreviousAndNextSoundButton(false)
+        if (mCurrentPosition == 0) {
             Handler().postDelayed({
                 playSound(mCurrentSoundFileName)
             },1000 )
         } else {
             playSound(mCurrentSoundFileName)
         }
+        // Enable buttons after speech
+        Handler().postDelayed({
+            setEnablePreviousAndNextSoundButton(true)
+            checkDisableButton()
+        },(2000.toLong()))
 
     }
 
     private fun getAutoPlayItem(){
-
-        restTimer = object : CountDownTimer((mAlphabetItems.size * 2000).toLong(),2000) {
+        setEnablePreviousAndNextSoundButton(false)
+        restTimer = object : CountDownTimer((mAlphabetItems.size * 2200).toLong(),2200) {
             override fun onTick(millisUntilFinished: Long) {
-                if (mCurrentPostition <= mAlphabetItems.size-1) {
+                setEnablePreviousAndNextSoundButton(false)
+                if (mCurrentPosition <= mAlphabetItems.size-1) {
                     // Disable Button
                     disabledAutoPlayButton()
                     getCurrentSoundAndImage()
                     playSound(mCurrentSoundFileName)
-                    mCurrentPostition++
-                    if (mCurrentPostition > mAlphabetItems.size-1) {
-                        mCurrentPostition = 0
+                    mCurrentPosition++
+                    if (mCurrentPosition > mAlphabetItems.size-1) {
+                        mCurrentPosition = 0
 
                     }
                 }
             }
 
             override fun onFinish() {
-                if (mCurrentPostition > mAlphabetItems.size-1) {
-
-                    controlPlayBackAndPlayNextButton("btnPreviousSound", false)
-                    controlPlayBackAndPlayNextButton("btnNextSound", true)
+                setEnablePreviousAndNextSoundButton(true)
+                checkDisableButton()
+                if (mCurrentPosition > mAlphabetItems.size-1) {
+                    enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+                    enablePlayBackAndPlayNextButton("btnNextSound", true)
                     enabledAutoPlayButton()
-
                 }
             }
         }.start()
     }
 
+    /** Disable button until speech finish*/
+    fun setEnablePreviousAndNextSoundButton(isEnable: Boolean) {
+        if (isEnable) {
+            binding.btnPreviousSound.isEnabled = true
+            binding.btnNextSound.isEnabled = true
+        } else {
+            binding.btnPreviousSound.isEnabled = false
+            binding.btnNextSound.isEnabled = false
+        }
+    }
+
     private fun checkDisableButton(){
-        if (mCurrentPostition == 0) {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", false)
-            controlPlayBackAndPlayNextButton("btnNextSound", true)
-        } else if (mCurrentPostition > mAlphabetItems.size-1) {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-            controlPlayBackAndPlayNextButton("btnNextSound", false)
-        } else if (mCurrentPostition >= 0 || mCurrentPostition < mAlphabetItems.size-1) {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-            controlPlayBackAndPlayNextButton("btnNextSound", true)
+        if (mCurrentPosition == 0) {
+            enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+            enablePlayBackAndPlayNextButton("btnNextSound", true)
+        } else if (mCurrentPosition > mAlphabetItems.size-1) {
+            enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+            enablePlayBackAndPlayNextButton("btnNextSound", false)
+        } else if (mCurrentPosition >= 0 || mCurrentPosition < mAlphabetItems.size-1) {
+            enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+            enablePlayBackAndPlayNextButton("btnNextSound", true)
 
         } else {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-            controlPlayBackAndPlayNextButton("btnNextSound", true)
+            enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+            enablePlayBackAndPlayNextButton("btnNextSound", true)
         }
     }
 
 
-    private fun controlPlayBackAndPlayNextButton(buttonViwId: String, isEnable: Boolean){
+    private fun enablePlayBackAndPlayNextButton(buttonViwId: String, isEnable: Boolean){
         when(buttonViwId) {
             "btnPreviousSound" -> {
                 if (isEnable) {
                     var drawable = ContextCompat.getDrawable(this@LearnAlphabetsActivity, R.drawable.tts_play_back)
                     binding.btnPreviousSound.setImageDrawable(drawable)
+                    binding.btnPreviousSound.isEnabled = true
                 } else {
                     var drawable = ContextCompat.getDrawable(this@LearnAlphabetsActivity, R.drawable.tts_play_back_disable)
                     binding.btnPreviousSound.setImageDrawable(drawable)
+                    binding.btnPreviousSound.isEnabled = false
                 }
             }
             "btnNextSound" -> {
                 if (isEnable) {
                     var drawable = ContextCompat.getDrawable(this@LearnAlphabetsActivity, R.drawable.tts_play_next)
                     binding.btnNextSound.setImageDrawable(drawable)
+                    binding.btnNextSound.isEnabled = true
                 } else {
                     var drawable = ContextCompat.getDrawable(this@LearnAlphabetsActivity, R.drawable.tts_play_next_disable)
                     binding.btnNextSound.setImageDrawable(drawable)
+                    binding.btnNextSound.isEnabled = false
                 }
             }
         }
@@ -226,6 +246,9 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_topbar_back_arrow)
         }
         binding.toolbarCustom.setNavigationOnClickListener {
+            if (restTimer != null) {
+                restTimer!!.cancel()
+            }
             stopSound()
             onBackPressed()
         }

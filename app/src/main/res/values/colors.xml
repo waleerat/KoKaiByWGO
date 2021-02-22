@@ -10,11 +10,22 @@
 
     <!--General-->
     <color name="background_color">#fcf8ec</color>
+    <color name="button_color_blue">#c6d2dd</color>
+    <color name="button_color_pink">#d6b0c3</color>
+    <color name="button_color_green">#bdd5d1</color>
+    <color name="button_color_yellow">#d3ceaf</color>
 
     <!--Lesson-->
     <color name="button_text_menu_color">#FFFFFFFF</color>
     <color name="background_row_odd">#f4f9f9</color>
     <color name="background_row_even">#f1f3de</color>
+
+    <!--Sound-->
+    <color name="sound_one_color">#96bb7c</color>
+    <color name="sound_two_color">#ea907a</color>
+    <color name="sound_three_color">#e84a5f</color>
+    <color name="sound_four_color">#f37121</color>
+    <color name="sound_five_color">#c70039</color>
 
 <!--Quiz-->
     <color name="quiz_border_default_color">#f4f9f9</color>

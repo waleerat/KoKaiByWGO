@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ui.activities.sounds.SoundFromSentenceActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        >
+        <!--START-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="20dp"
+            >
+            <!-- START BODY -->
+            <!--Alphabet-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/speech_title"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <ImageButton
+                    android:id="@+id/btn_learn_alphabet_play"
+                    android:layout_width="@dimen/btn_menu_icon_width"
+                    android:layout_height="@dimen/btn_menu_icon_height"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Go next"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/sound_on"
+                    android:scaleType="fitXY"/>
+            </LinearLayout>
+            <!--Alphabet-->
+
+            <EditText
+                android:id="@+id/etEnteredText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/speech_place_holder" />
+
+            <Button
+                android:id="@+id/btnSpeak"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/speech_submit_button" />
+            <!-- END BODY -->
+        </LinearLayout>
+        <!--END-->
+
+    </LinearLayout>
+</LinearLayout>

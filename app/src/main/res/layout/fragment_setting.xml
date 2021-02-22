@@ -6,10 +6,119 @@
     android:background="@drawable/background_yellow"
     tools:context=".ui.fragments.SettingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="SettingFragment" />
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        >
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_menu_height"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/menu_main_setting"/>
+
+
+        <!--English-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_menu_height"
+                    android:gravity="left"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="Follow these steps if you can’t hear sounds."
+                    android:layout_marginBottom="10dp"/>
+
+                <com.wgoweb.kokaibywgo.utils.MSPTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textSize="16sp"
+                    android:gravity="left|center"
+                    android:textColor="@color/colorPrimary"
+                    android:text="1. Go to Setting -> Language and Input"
+                    />
+
+                <com.wgoweb.kokaibywgo.utils.MSPTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textSize="16sp"
+                    android:gravity="left|center"
+                    android:textColor="@color/colorPrimary"
+                    android:text="2. Select  Speech (Text-to-speech output)"
+                    />
+                <com.wgoweb.kokaibywgo.utils.MSPTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textSize="16sp"
+                    android:gravity="left|center"
+                    android:textColor="@color/colorPrimary"
+                    android:text="3. Select Language -> Thai (Thailand)"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--English-->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="10dp">
+                <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/btn_menu_height"
+                    android:gravity="left"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="ทำตามขั้นตอนต่อไปนี้หากคุณกดปุ่มลำโพงแล้วไม่มีเสียง"
+                    android:layout_marginBottom="10dp"/>
+
+                <com.wgoweb.kokaibywgo.utils.MSPTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textSize="16sp"
+                    android:gravity="left|center"
+                    android:textColor="@color/colorPrimary"
+                    android:text="1. ไปที่ ตั้งค่า > ภาษาและการใส่ข้อมูล"/>
+
+                <com.wgoweb.kokaibywgo.utils.MSPTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textSize="16sp"
+                    android:gravity="left|center"
+                    android:textColor="@color/colorPrimary"
+                    android:text="2. เลือก เสียพูด (จากตัวอักษรเป็นคำพูด)"/>
+                <com.wgoweb.kokaibywgo.utils.MSPTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textSize="16sp"
+                    android:gravity="left|center"
+                    android:textColor="@color/colorPrimary"
+                    android:text="3.เลือก  ภาษาไทย" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </FrameLayout>

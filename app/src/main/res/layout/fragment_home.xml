@@ -9,42 +9,47 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
         android:layout_margin="20dp"
         android:orientation="vertical"
         >
+
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/activity_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_menu_height"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/menu_main_home"/>
         <!--START-->
+        <!--Height Sound-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_height="150dp"
+            android:padding="10dp"
+            android:layout_margin="5dp"
             android:gravity="center"
-            android:padding="20dp"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_blue_button_shape"
             >
-            <!-- START BODY -->
-            <!--Alphabet-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
                 >
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    >
-                    <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/speech_title"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="20sp" />
-                </LinearLayout>
+                    android:gravity="center"
+                    android:textSize="@dimen/btn_menu_textSize"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/menu_sound_height"/>
+
                 <ImageButton
-                    android:id="@+id/btn_learn_alphabet_play"
+                    android:id="@+id/btn_sound_high_play"
                     android:layout_width="@dimen/btn_menu_icon_width"
                     android:layout_height="@dimen/btn_menu_icon_height"
                     android:background="@android:color/transparent"
@@ -54,22 +59,121 @@
                     android:src="@drawable/sound_on"
                     android:scaleType="fitXY"/>
             </LinearLayout>
-            <!--Alphabet-->
 
-            <EditText
-                android:id="@+id/etEnteredText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:hint="@string/speech_place_holder" />
-
-            <Button
-                android:id="@+id/btnSpeak"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/speech_submit_button" />
-            <!-- END BODY -->
+            <ImageButton
+                android:id="@+id/btn_show_high_sound_alphabet"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Go next"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_bottom_menu_sound"
+                android:scaleType="fitXY"/>
         </LinearLayout>
+        <!--Height Sound-->
+
+        <!--Height Sound-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_blue_button_shape"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                >
+                <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/btn_menu_textSize"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/menu_sound_middle"/>
+
+                <ImageButton
+                    android:id="@+id/btn_sound_middle_play"
+                    android:layout_width="@dimen/btn_menu_icon_width"
+                    android:layout_height="@dimen/btn_menu_icon_height"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Go next"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/sound_on"
+                    android:scaleType="fitXY"/>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_show_middle_sound_alphabet"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Go next"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_bottom_menu_sound"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+        <!--Height Sound-->
+
+        <!--Height Sound-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_blue_button_shape"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="50dp"
+                android:paddingRight="50dp"
+                >
+                <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textSize="@dimen/btn_menu_textSize"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/menu_sound_low"/>
+
+                <ImageButton
+                    android:id="@+id/btn_sound_low_play"
+                    android:layout_width="@dimen/btn_menu_icon_width"
+                    android:layout_height="@dimen/btn_menu_icon_height"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Go next"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/sound_on"
+                    android:scaleType="fitXY"/>
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_show_low_sound_alphabet"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Go next"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/ic_bottom_menu_sound"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+        <!--Height Sound-->
         <!--END-->
 
     </LinearLayout>

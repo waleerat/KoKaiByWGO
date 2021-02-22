@@ -20,6 +20,7 @@ import com.wgoweb.kokaibywgo.ui.activities.BaseActivity
 import com.wgoweb.kokaibywgo.ui.activities.ResultActivity
 import com.wgoweb.kokaibywgo.utils.Constants
 import com.wgoweb.kokaibywgo.utils.SharePreferenceHelper
+import kotlin.math.roundToInt
 
 class QuizLessonActivity : BaseActivity(), View.OnClickListener {
     private lateinit var binding: ActivityQuizLessonBinding
@@ -127,9 +128,26 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
                 },
                 1000 )
         }
+
+        // Wait until speech finish
+        enableChoiceButtons(false)
+        Handler().postDelayed(
+            {
+                enableChoiceButtons(true)
+            }, (timerPerSentence()*1000).toLong() )
+
     }
 
+    private fun  timerPerSentence() : Int{
+         var timerInMinutes = 0
+         var longestSentence = 0
+        longestSentence = mSentenceItems[mQuizChoices[mQuizAnswer]].sentence_text.length
 
+        if (longestSentence > 30) {
+            timerInMinutes = (longestSentence  /  8.1).roundToInt()
+        }
+        return timerInMinutes
+    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun setQuizChoiceToLayout() {
@@ -194,10 +212,10 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
         }
 
         mCurrentPostition++
-
+        enableChoiceButtons(false)
         Handler().postDelayed(
             {
-
+                enableChoiceButtons(true)
                 if (mCurrentPostition <= mMaxQuiz) {
                     loadQuiz()
                 } else {
@@ -213,6 +231,12 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
 
     }
 
+    private fun enableChoiceButtons(isEnable: Boolean){
+        binding.choiceOne.isEnabled = isEnable
+        binding.choiceTwo.isEnabled = isEnable
+        binding.choiceThree.isEnabled = isEnable
+        binding.choiceFour.isEnabled = isEnable
+    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun borderCorrectAnswerView(answer: Int) {
@@ -251,9 +275,6 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-
-
-
     @RequiresApi(Build.VERSION_CODES.M)
     private fun borderDefaultView(){
         val options = ArrayList<TextView>()
@@ -270,7 +291,7 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = "Alphabet Quiz"
+        binding.tvTitle.text = Constants.QUIZ_TEXT + Constants.LEARN_VOWEL_TEXT
 
         val actionBar = supportActionBar
         if (actionBar != null) {

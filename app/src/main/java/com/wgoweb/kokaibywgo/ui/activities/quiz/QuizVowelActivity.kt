@@ -152,10 +152,10 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
         }
 
         mCurrentPostition++
-
+        enableChoiceButtons(false)
         Handler().postDelayed(
             {
-
+                enableChoiceButtons(true)
                 if (mCurrentPostition <= mMaxQuiz) {
                     loadQuiz()
                 } else {
@@ -171,6 +171,12 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
 
     }
 
+    private fun enableChoiceButtons(isEnable: Boolean){
+        binding.choiceOne.isEnabled = isEnable
+        binding.choiceTwo.isEnabled = isEnable
+        binding.choiceThree.isEnabled = isEnable
+        binding.choiceFour.isEnabled = isEnable
+    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun borderCorrectAnswerView(answer: Int) {
@@ -228,7 +234,7 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = "Vowel Quiz"
+        binding.tvTitle.text = Constants.QUIZ_TEXT + Constants.LEARN_ALPHABET_TEXT
 
         val actionBar = supportActionBar
         if (actionBar != null) {

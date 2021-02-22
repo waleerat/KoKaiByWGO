@@ -18,7 +18,7 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
     private lateinit var binding: ActivityLearnVowelsBinding
 
     private lateinit var mVowelItems: ArrayList<VowelModel>
-    private var mCurrentPostition: Int = 0
+    private var mCurrentPosition: Int = 0
     private var mCurrentSoundFileName: String = ""
 
     private var restTimer: CountDownTimer? = null
@@ -45,52 +45,54 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
         binding.btnNextSound.setOnClickListener(this)
     }
 
-
+    @Suppress("DEPRECATION")
     override fun onResume() {
         super.onResume()
 
-        mCurrentPostition = 0
-        if (mVowelItems.size > 0 ) {
+        mCurrentPosition = 0
+        /*if (mVowelItems.size > 0 ) {
             getVowelItem()
         }
+
+        binding.btnAutoSound.isEnabled = false
+        Handler().postDelayed({
+            binding.btnAutoSound.isEnabled = true
+        },(2000.toLong()))*/
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_previous_sound -> {
-                if (mCurrentPostition > 0 ) {
-                    mCurrentPostition--
+                if (mCurrentPosition > 0 ) {
+                    mCurrentPosition--
                     getVowelItem()
                 }
-                checkDisableButton()
             }
 
             R.id.btn_auto_sound -> {
-                controlPlayBackAndPlayNextButton("btnPreviousSound", false)
-                controlPlayBackAndPlayNextButton("btnNextSound", false)
+                enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+                enablePlayBackAndPlayNextButton("btnNextSound", false)
                 getAutoPlayItem()
             }
 
             R.id.btn_pause_sound -> {
                 if (restTimer != null) {
                     restTimer!!.cancel()
-                    mCurrentPostition--
-                    controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-                    controlPlayBackAndPlayNextButton("btnNextSound", true)
+                    mCurrentPosition--
+                    enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+                    enablePlayBackAndPlayNextButton("btnNextSound", true)
                     enabledAutoPlayButton()
-
                 }
-                checkDisableButton()
+                //checkDisableButton()
             }
 
             R.id.btn_next_sound , R.id.iv_vowel -> {
-                if (mCurrentPostition == mVowelItems.size-1 ) {
-                    mCurrentPostition = 0
+                if (mCurrentPosition == mVowelItems.size-1 ) {
+                    mCurrentPosition = 0
                 } else {
-                    mCurrentPostition++
+                    mCurrentPosition++
                 }
                 getVowelItem()
-                checkDisableButton()
             }
         }
     }
@@ -101,90 +103,112 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
      * */
 
     fun getCurrentSoundAndImage(){
-        if (mCurrentPostition >= 0  && mCurrentPostition <= mVowelItems.size-1) {
-            binding.ivVowel.setImageResource(mVowelItems[mCurrentPostition].image)
+        if (mCurrentPosition >= 0  && mCurrentPosition <= mVowelItems.size-1) {
+            binding.ivVowel.setImageResource(mVowelItems[mCurrentPosition].image)
             setImageSize(binding.ivVowel, false)
-            mCurrentSoundFileName =  mVowelItems[mCurrentPostition].sound
+            mCurrentSoundFileName =  mVowelItems[mCurrentPosition].sound
         }
     }
 
     @Suppress("DEPRECATION")
     private fun getVowelItem(){
+        setEnablePreviousAndNextSoundButton(false)
         getCurrentSoundAndImage()
-        if (mCurrentPostition == 0) {
+        if (mCurrentPosition == 0) {
             Handler().postDelayed({
                 playSound(mCurrentSoundFileName)
             },1000 )
         } else {
             playSound(mCurrentSoundFileName)
         }
+        // Enable buttons after speech
+        Handler().postDelayed({
+            setEnablePreviousAndNextSoundButton(true)
+            checkDisableButton()
+        },(2000.toLong()))
 
     }
 
     private fun getAutoPlayItem(){
+        setEnablePreviousAndNextSoundButton(false)
         restTimer = object : CountDownTimer((mVowelItems.size * 2000).toLong(),2000) {
             override fun onTick(millisUntilFinished: Long) {
-                if (mCurrentPostition <= mVowelItems.size-1) {
+                setEnablePreviousAndNextSoundButton(false)
+                if (mCurrentPosition <= mVowelItems.size-1) {
                     // Disable Button
                     disabledAutoPlayButton()
                     getCurrentSoundAndImage()
                     playSound(mCurrentSoundFileName)
-                    mCurrentPostition++
-                    if (mCurrentPostition > mVowelItems.size-1) {
-                        mCurrentPostition = 0
-
+                    mCurrentPosition++
+                    if (mCurrentPosition > mVowelItems.size-1) {
+                        mCurrentPosition = 0
                     }
                 }
             }
 
             override fun onFinish() {
-                if (mCurrentPostition > mVowelItems.size-1) {
-
-                    controlPlayBackAndPlayNextButton("btnPreviousSound", false)
-                    controlPlayBackAndPlayNextButton("btnNextSound", true)
+                setEnablePreviousAndNextSoundButton(true)
+                checkDisableButton()
+                if (mCurrentPosition > mVowelItems.size-1) {
+                    enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+                    enablePlayBackAndPlayNextButton("btnNextSound", true)
                     enabledAutoPlayButton()
-
                 }
             }
         }.start()
     }
 
+    /** Disable button until speech finish*/
+    fun setEnablePreviousAndNextSoundButton(isEnable: Boolean) {
+        if (isEnable) {
+            binding.btnPreviousSound.isEnabled = true
+            binding.btnNextSound.isEnabled = true
+        } else {
+            binding.btnPreviousSound.isEnabled = false
+            binding.btnNextSound.isEnabled = false
+        }
+    }
+
     private fun checkDisableButton(){
-        if (mCurrentPostition == 0) {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", false)
-            controlPlayBackAndPlayNextButton("btnNextSound", true)
-        } else if (mCurrentPostition > mVowelItems.size-1) {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-            controlPlayBackAndPlayNextButton("btnNextSound", false)
-        } else if (mCurrentPostition >= 0 || mCurrentPostition < mVowelItems.size-1) {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-            controlPlayBackAndPlayNextButton("btnNextSound", true)
+        if (mCurrentPosition == 0) {
+            enablePlayBackAndPlayNextButton("btnPreviousSound", false)
+            enablePlayBackAndPlayNextButton("btnNextSound", true)
+        } else if (mCurrentPosition > mVowelItems.size-1) {
+            enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+            enablePlayBackAndPlayNextButton("btnNextSound", false)
+        } else if (mCurrentPosition >= 0 || mCurrentPosition < mVowelItems.size-1) {
+            enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+            enablePlayBackAndPlayNextButton("btnNextSound", true)
 
         } else {
-            controlPlayBackAndPlayNextButton("btnPreviousSound", true)
-            controlPlayBackAndPlayNextButton("btnNextSound", true)
+            enablePlayBackAndPlayNextButton("btnPreviousSound", true)
+            enablePlayBackAndPlayNextButton("btnNextSound", true)
         }
     }
 
 
-    private fun controlPlayBackAndPlayNextButton(buttonViwId: String, isEnable: Boolean){
+    private fun enablePlayBackAndPlayNextButton(buttonViwId: String, isEnable: Boolean){
         when(buttonViwId) {
             "btnPreviousSound" -> {
                 if (isEnable) {
                     var drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_back)
                     binding.btnPreviousSound.setImageDrawable(drawable)
+                    binding.btnPreviousSound.isEnabled = true
                 } else {
                     var drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_back_disable)
                     binding.btnPreviousSound.setImageDrawable(drawable)
+                    binding.btnPreviousSound.isEnabled = false
                 }
             }
             "btnNextSound" -> {
                 if (isEnable) {
                     var drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_next)
                     binding.btnNextSound.setImageDrawable(drawable)
+                    binding.btnNextSound.isEnabled = true
                 } else {
                     var drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_next_disable)
                     binding.btnNextSound.setImageDrawable(drawable)
+                    binding.btnNextSound.isEnabled = false
                 }
             }
         }
@@ -234,6 +258,9 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_topbar_back_arrow)
         }
         binding.toolbarCustom.setNavigationOnClickListener {
+            if (restTimer != null) {
+                restTimer!!.cancel()
+            }
             stopSound()
             onBackPressed()
         }

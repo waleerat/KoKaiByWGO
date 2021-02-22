@@ -17,7 +17,7 @@ object Constants {
     // SETTING
     const val MAX_QUIZ_FOR_ALPHABETS = 5
     const val MAX_QUIZ_FOR_VOWEL = 5
-    const val SPEECH_DELAY : Float = 0.8f
+    const val SPEECH_DELAY : Float = 0.7f
 
     // Table
     const val COLLECTION_LEVEL = "KokaiLevel"
@@ -34,6 +34,8 @@ object Constants {
     const val INTENT_SECTION_ID = "intent_section_id"
     const val INTENT_SECTION_NAME = "intent_section_name"
     const val INTENT_SENTENCE_ID = "intent_sentence_id"
+    const val INTENT_SOUND_LEVEL = "intent_sound_level"
+    const val INTENT_SOUND_LEVEL_NAME = "intent_sound_name"
 
     // For Intent
     const val USER_NAME: String = "user_name"
@@ -42,6 +44,13 @@ object Constants {
 
     // For adapter
     var CURRENT_ROW_BACKGROUND = 0
+
+    // Menu
+    const val MENU_MAIN_HOME: String = "เทียบเสียง"
+    const val MENU_MAIN_LESSON: String = "บทเรียน"
+    const val MENU_MAIN_QUIZ: String = "แบบทดสอบ"
+    const val MENU_MAIN_SETTING: String = "ช่วยเหลือ"
+
 
     lateinit var LEVEL_ID: String
     private const val LESSON_ORIGINAL_TEXT = "บทเรียน"
@@ -58,6 +67,13 @@ object Constants {
     var TEXT_TO_SPEECH: String = ""
     var LESSON_TEXT = LESSON_ORIGINAL_TEXT
     var LONGEST_SENTENCE: String = ""
+
+    // Sound
+    const val SOUND_HIGH_TEXT = "เสียงสูง"
+    const val SOUND_MIDDLE_TEXT = "เสียงกลาง"
+    const val SOUND_LOW_TEXT = "เสียงต่ำ"
+    var SELECTED_ALPHABET = "ป"
+    var SELECTED_SOUND_LEVEL = ""
 
 
     fun generateChoices(amountOfRows: Int): ArrayList<Int> {
@@ -80,6 +96,7 @@ object Constants {
  * GET ALPHABETS
  * **/
 
+
      fun getAlphabetItems(context: Context) : ArrayList<AlphabetModel>{
         var itemList = ArrayList<AlphabetModel>()
         var saveItem: AlphabetModel?
@@ -96,7 +113,8 @@ object Constants {
                 saveItem = AlphabetModel(
                     imageResource,
                     rowItem.sound,
-                    rowItem.alphabetSound,
+                    rowItem.isShowInSoundActivity,
+                    rowItem.alphabet,
                     rowItem.vowelThai,
                     rowItem.vowelEnglish,
                     rowItem.meaning,
@@ -134,7 +152,12 @@ object Constants {
                     rowItem.sound,
                     rowItem.vowelThai,
                     rowItem.vowelEnglish,
-                    rowItem.reading_sound,
+                    rowItem.isShowInSoundActivity,
+                    rowItem.soundLevelOne,
+                    rowItem.soundLevelTwo,
+                    rowItem.soundLevelThree,
+                    rowItem.soundLevelFour,
+                    rowItem.soundLevelFive,
                     rowItem.writing_pattern)
                 itemList.add(saveItem)
 
