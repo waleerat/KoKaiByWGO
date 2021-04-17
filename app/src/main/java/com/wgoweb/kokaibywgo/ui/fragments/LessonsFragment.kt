@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.FragmentLessonsBinding
+import com.wgoweb.kokaibywgo.databinding.FragmentQuizBinding
 import com.wgoweb.kokaibywgo.firebase.LevelListener
 import com.wgoweb.kokaibywgo.models.LevelModel
 import com.wgoweb.kokaibywgo.ui.activities.learn.LearnAlphabetsActivity
@@ -22,17 +23,19 @@ import java.util.*
 
 class LessonsFragment : BaseFragment(), View.OnClickListener {
 
-    private lateinit var binding : FragmentLessonsBinding
+    private var _binding: FragmentLessonsBinding? = null
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_lessons, container, false)
+        _binding = FragmentLessonsBinding.inflate(inflater, container, false)
+        return  binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentLessonsBinding.bind(view)
 
         binding.tvNoItemsFound.visibility = View.GONE
         // Show the progress dialog.
@@ -40,6 +43,7 @@ class LessonsFragment : BaseFragment(), View.OnClickListener {
 
         LevelListener().getLevelItemsListForLessonFragment(this@LessonsFragment , this.requireActivity())
 
+        binding.btnSoundTitle.setOnClickListener(this)
         binding.btnMenuLearnAlphabets.setOnClickListener(this)
         binding.btnMenuLearnVowels.setOnClickListener(this)
         binding.btnMenuLearnVowelsAndAlphabets.setOnClickListener(this)
@@ -54,7 +58,7 @@ class LessonsFragment : BaseFragment(), View.OnClickListener {
     fun saveLevelToPreference(itemsList: ArrayList<LevelModel>) {
         val jsonString = Gson().toJson(itemsList)
         if (itemsList.size > 0) {
-            SharePreferenceHelper().setSharePreference(this.requireActivity(), Constants.REF_LEVEL_PREFERENCE,jsonString)
+            SharePreferenceHelper.setSharePreference(this.requireActivity(), Constants.REF_LEVEL_PREFERENCE,jsonString)
         }
     }
 
@@ -101,21 +105,23 @@ class LessonsFragment : BaseFragment(), View.OnClickListener {
                 startActivity(intent)
             }
 
-            R.id.btn_learn_alphabet_play -> {
-                speakOut(Constants.LEARN_ALPHABET_TEXT)
-            }
-            R.id.btn_learn_vowel_play -> {
-                speakOut(Constants.LEARN_VOWEL_TEXT)
-            }
+            R.id.btn_sound_title -> speakOut(resources.getString(R.string.menu_main_lesson))
 
-            R.id.btn_learn_vowel_and_alphabet_play -> {
-                speakOut(Constants.LEARN_ALPHABET_AND_SOUND_TEXT)
-            }
+            R.id.btn_learn_alphabet_play -> speakOut(resources.getString(R.string.menu_learn_alphabet))
+            R.id.btn_learn_vowel_play -> speakOut(resources.getString(R.string.menu_learn_vowel))
+            R.id.btn_learn_vowel_and_alphabet_play -> speakOut(resources.getString(R.string.menu_alphabet_and_vowel))
+
+
         }
     }
 
     public interface OnClickListener {
         fun onClick(currentText: String)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

@@ -12,6 +12,7 @@ import com.wgoweb.kokaibywgo.databinding.ActivityLearnVowelsBinding
 import com.wgoweb.kokaibywgo.models.VowelModel
 import com.wgoweb.kokaibywgo.ui.activities.BaseActivity
 import com.wgoweb.kokaibywgo.utils.Constants
+import java.io.IOException
 
 class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
 
@@ -22,6 +23,7 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
     private var mCurrentSoundFileName: String = ""
 
     private var restTimer: CountDownTimer? = null
+    private var isAutoPlay: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +34,6 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
         setupActionBar()
 
         mVowelItems = Constants.getVowelItems(this)  // Get All Items
-        if (mVowelItems.size > 0) {
-
-        }
 
         checkDisableButton()
         disabledOrEnableAutoPlayButton("btnPauseSound", false)
@@ -73,6 +72,7 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
                 enablePlayBackAndPlayNextButton("btnPreviousSound", false)
                 enablePlayBackAndPlayNextButton("btnNextSound", false)
                 getAutoPlayItem()
+                isAutoPlay = true
             }
 
             R.id.btn_pause_sound -> {
@@ -191,22 +191,22 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
         when(buttonViwId) {
             "btnPreviousSound" -> {
                 if (isEnable) {
-                    var drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_back)
+                    val drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_back)
                     binding.btnPreviousSound.setImageDrawable(drawable)
                     binding.btnPreviousSound.isEnabled = true
                 } else {
-                    var drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_back_disable)
+                    val drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_back_disable)
                     binding.btnPreviousSound.setImageDrawable(drawable)
                     binding.btnPreviousSound.isEnabled = false
                 }
             }
             "btnNextSound" -> {
                 if (isEnable) {
-                    var drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_next)
+                    val drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_next)
                     binding.btnNextSound.setImageDrawable(drawable)
                     binding.btnNextSound.isEnabled = true
                 } else {
-                    var drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_next_disable)
+                    val drawable = ContextCompat.getDrawable(this@LearnVowelsActivity, R.drawable.tts_play_next_disable)
                     binding.btnNextSound.setImageDrawable(drawable)
                     binding.btnNextSound.isEnabled = false
                 }
@@ -250,7 +250,7 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = Constants.LEARN_VOWEL_TEXT
+        binding.tvTitle.text = resources.getString(R.string.menu_learn_vowel)
 
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -258,10 +258,12 @@ class LearnVowelsActivity : BaseActivity(), View.OnClickListener {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_topbar_back_arrow)
         }
         binding.toolbarCustom.setNavigationOnClickListener {
-            if (restTimer != null) {
-                restTimer!!.cancel()
+            try {
+                if (restTimer != null) restTimer!!.cancel()
+            }catch (e: IOException) {
+                Log.d("toolbarCustom", e.printStackTrace().toString())
             }
-            stopSound()
+            //stopSound()
             onBackPressed()
         }
     }

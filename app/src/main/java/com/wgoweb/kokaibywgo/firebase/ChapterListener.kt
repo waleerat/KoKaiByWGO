@@ -1,6 +1,5 @@
 package com.wgoweb.kokaibywgo.firebase
 
-
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.wgoweb.kokaibywgo.models.ChapterModel
@@ -18,9 +17,9 @@ class ChapterListener {
 
     fun getDataListItemForChapterActivity(activity: ChapterActivity, levelId: String) {
         //For testing
-        //SharePreferenceHelper().clearLevelPreference(activity, Constants.REF_CHAPTER_PREFERENCE)
+        //SharePreferenceHelper.clearLevelPreference(activity, Constants.REF_CHAPTER_PREFERENCE)
         mLevelCode = levelId
-        mChapterItems = SharePreferenceHelper().getChapterReference(activity)
+        mChapterItems = SharePreferenceHelper.getChapterReference(activity)
          if (mChapterItems.size == 0) {
             getChapterList(activity, levelId)
         } else {
@@ -58,6 +57,7 @@ class ChapterListener {
                     )
                     mChapterItems.add(rowData)
                 }
+
                 // Save to SharePreference
                 activity.saveChapterToPreference(mChapterItems)
                 activity.hideProgressDialog()

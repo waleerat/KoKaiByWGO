@@ -232,7 +232,7 @@ class QuizAlphabetActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = "Alphabet Quiz"
+        binding.tvTitle.text = resources.getString(R.string.menu_quiz_alphabet)
 
         val actionBar = supportActionBar
         if (actionBar != null) {

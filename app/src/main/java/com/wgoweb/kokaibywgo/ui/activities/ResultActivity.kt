@@ -3,6 +3,8 @@ package com.wgoweb.kokaibywgo.ui.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.navigation.NavDeepLinkBuilder
+import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.ActivityResultBinding
 import com.wgoweb.kokaibywgo.ui.fragments.QuizFragment
 import com.wgoweb.kokaibywgo.utils.Constants
@@ -29,9 +31,10 @@ class ResultActivity : AppCompatActivity() {
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            i.putExtra("EXIT", true)
+           // i.putExtra("EXIT", true)
             startActivity(i)
-            finish()
+
+
         }
         binding.bntPlayAgain.setOnClickListener {
             onBackPressed()

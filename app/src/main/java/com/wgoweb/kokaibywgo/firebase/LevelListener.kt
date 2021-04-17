@@ -15,8 +15,8 @@ class LevelListener {
     var mLevelItems = ArrayList<LevelModel>()
 
     fun getLevelItemsListForLessonFragment(fragment: LessonsFragment, activity: Activity) {
-        mLevelItems = SharePreferenceHelper().getLevelPreference(activity)
-        Log.i("mLevelItems.size >>",mLevelItems.size.toString())
+        mLevelItems = SharePreferenceHelper.getLevelPreference(activity)
+        //Log.i("mLevelItems.size >>",mLevelItems.size.toString())
 
         if (mLevelItems.size == 0) {
             getLevelItemsListForLessonFragment(fragment)
@@ -33,7 +33,7 @@ class LevelListener {
 
 
     fun getLevelItemsListForQuizFragment(fragment: QuizFragment, activity: Activity) {
-        mLevelItems = SharePreferenceHelper().getLevelPreference(activity)
+        mLevelItems = SharePreferenceHelper.getLevelPreference(activity)
         if (mLevelItems.size == 0) {
             getLevelItemsListForQuizFragment(fragment)
 

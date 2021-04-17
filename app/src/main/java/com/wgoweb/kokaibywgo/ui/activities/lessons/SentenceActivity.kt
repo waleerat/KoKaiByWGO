@@ -53,6 +53,8 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
         setupActionBar()
 
         binding.tvNoItemsFound.visibility = View.GONE
+        binding.llAutoSentenceList.visibility = View.GONE
+
         binding.btnPreviousSound.setOnClickListener(this)
         binding.btnAutoSound.setOnClickListener(this)
         binding.btnPauseSound.setOnClickListener(this)
@@ -70,7 +72,7 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
         checkDisableButton()
         if (itemsList.size > 0) {
             val jsonString = Gson().toJson(itemsList)
-            SharePreferenceHelper().setSharePreference(this@SentenceActivity, Constants.REF_SENTENCE_PREFERENCE,jsonString )
+            SharePreferenceHelper.setSharePreference(this@SentenceActivity, Constants.REF_SENTENCE_PREFERENCE,jsonString )
         }
     }
 
@@ -106,6 +108,8 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btn_previous_sound -> {
+                binding.llSentenceList.visibility = View.VISIBLE
+                binding.llAutoSentenceList.visibility = View.GONE
                 if (mCurrentPosition > 0 ) {
                     mCurrentPosition--
                     getSentenceItems()
@@ -113,12 +117,17 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
             }
 
             R.id.btn_auto_sound -> {
+                binding.llSentenceList.visibility = View.GONE
+                binding.llAutoSentenceList.visibility = View.VISIBLE
                 enablePlayBackAndPlayNextButton("btnPreviousSound", false)
                 enablePlayBackAndPlayNextButton("btnNextSound", false)
+
+                if (mCurrentPosition > 0) mCurrentPosition++
                 getAutoPlayItem()
             }
 
             R.id.btn_pause_sound -> {
+
                 if (restTimer != null) {
                     restTimer!!.cancel()
                     mCurrentPosition--
@@ -130,14 +139,16 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
             }
 
             R.id.btn_next_sound , R.id.iv_vowel -> {
+                binding.llSentenceList.visibility = View.VISIBLE
+                binding.llAutoSentenceList.visibility = View.GONE
                     getSentenceItems()
-                    if (mCurrentPosition == mSentenceItems.size-1 ) {
+                    if ((mCurrentPosition == mSentenceItems.size-1) || (mCurrentPosition  == -1) ) {
                         mCurrentPosition = 0
+
                     } else {
                         mCurrentPosition++
                     }
                    // checkDisableButton()
-
             }
         }
     }
@@ -147,6 +158,8 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
      * */
 
     fun playCurrentSentence(){
+        if (mCurrentPosition  == -1) {  mCurrentPosition = 0  }
+
         if (mCurrentPosition >= 0  && mCurrentPosition <= mSentenceItems.size-1) {
             speakOut(mSentenceItems[mCurrentPosition].sentence_text)
         }
@@ -178,15 +191,14 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
             @Suppress("DEPRECATION")
             override fun onTick(millisUntilFinished: Long) {
                 setEnablePreviousAndNextSoundButton(false)
-                Log.i("Disable >>", "setEnablePreviousAndNextSoundButton(false)")
+                //Log.i("Disable >>", "setEnablePreviousAndNextSoundButton(false)")
                 if (mCurrentPosition <= mSentenceItems.size-1) {
                     // Disable Button
                     disabledAutoPlayButton()
-                    playCurrentSentence() 
+                    playCurrentSentence()
+                    binding.tvAutoSentenceList.text = mSentenceItems[mCurrentPosition].sentence_text
                     mCurrentPosition++
-                    if (mCurrentPosition > mSentenceItems.size-1) {
-                        mCurrentPosition = 0
-                    }
+
                 }
             }
             override fun onFinish() {
@@ -196,9 +208,16 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
                     enablePlayBackAndPlayNextButton("btnPreviousSound", false)
                     enablePlayBackAndPlayNextButton("btnNextSound", true)
                     enabledAutoPlayButton()
+                    if (mCurrentPosition > mSentenceItems.size-1) {
+                        mCurrentPosition = -1
+                        binding.llSentenceList.visibility = View.VISIBLE
+                        binding.llAutoSentenceList.visibility = View.GONE
+                    }
                 }
             }
         }.start()
+
+
     }
 
     /** Disable button until speech finish*/
@@ -207,7 +226,7 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
             binding.btnPreviousSound.isEnabled = true
             binding.btnNextSound.isEnabled = true
         } else {
-            Log.i("BackAndPlayNext >>", "false")
+            //Log.i("BackAndPlayNext >>", "false")
             binding.btnPreviousSound.isEnabled = false
             binding.btnNextSound.isEnabled = false
             enablePlayBackAndPlayNextButton("btnPreviousSound", false)
@@ -216,7 +235,7 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
     }
 
     fun  timerPerSentence() : Int{
-        var timerInMinutes = 3
+        var timerInMinutes = 4
 
         if (Constants.LONGEST_SENTENCE.length > 30) {
             timerInMinutes = (Constants.LONGEST_SENTENCE.length  /  8.1).roundToInt()
@@ -296,6 +315,7 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
         disabledOrEnableAutoPlayButton("btnPauseSound", true)
     }
     private fun enabledAutoPlayButton(){
+
         /*
         binding.btnAutoSound.isEnabled = false
         var drawable = ContextCompat.getDrawable(this@SentenceActivity, R.drawable.tts_auto_play)*/
@@ -323,6 +343,7 @@ class SentenceActivity : BaseActivity(), View.OnClickListener {
             onBackPressed()
         }
     }
+
     public interface OnClickListener {
         fun onClick(currentText: String)
     }

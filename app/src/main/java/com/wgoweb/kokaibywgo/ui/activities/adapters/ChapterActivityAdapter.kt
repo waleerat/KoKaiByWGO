@@ -68,16 +68,3 @@ class ChapterActivityAdapter(val context: Context,
 
 
 }
-
-
-/*
-* public interface OnClickListener {
-    fun onClick()
-}
-
-
-
-In adapter,
-
-
-* */

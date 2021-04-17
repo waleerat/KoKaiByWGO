@@ -12,7 +12,6 @@ import com.wgoweb.kokaibywgo.ui.activities.quiz.QuizLessonActivity
 import com.wgoweb.kokaibywgo.utils.Constants
 import com.wgoweb.kokaibywgo.utils.SharePreferenceHelper
 
-
 class SentenceListener {
     private val mFireStore = FirebaseFirestore.getInstance()
  
@@ -21,9 +20,9 @@ class SentenceListener {
 
     fun getDataListItemForSentenceActivity(activity: SentenceActivity, sectionId: String) {
         //For testing
-        //SharePreferenceHelper().clearLevelPreference(activity, Constants.REF_SENTENCE_PREFERENCE)
+        //SharePreferenceHelper.clearLevelPreference(activity, Constants.REF_SENTENCE_PREFERENCE)
         mSectionCode = sectionId
-        mSentenceItems = SharePreferenceHelper().getSentenceReference(activity)
+        mSentenceItems = SharePreferenceHelper.getSentenceReference(activity)
         if (mSentenceItems.size == 0) {
             getSentenceList(activity, mSectionCode)
         } else {
@@ -38,6 +37,7 @@ class SentenceListener {
 
 
     private fun getSentenceList(activity: SentenceActivity, sectionId: String) {
+        mSentenceItems = ArrayList()
         // >>> Sentence
         //Log.i("Get collection >>", Constants.TBL_SENTENCES)
         mFireStore.collection(Constants.COLLECTION_SENTENCE)
@@ -61,7 +61,7 @@ class SentenceListener {
                     )
                     mSentenceItems.add(rowData)
                 }
-                Log.i("ToPreference Size >>",mSentenceItems.size.toString())
+                //Log.i("ToPreference Size >>",mSentenceItems.size.toString())
                 // Save to SharePreference
                 activity.saveSentenceToPreference(mSentenceItems)
                 activity.hideProgressDialog()
@@ -89,9 +89,9 @@ class SentenceListener {
     @RequiresApi(Build.VERSION_CODES.M)
     fun getDataListItemForQuizActivity(activity: QuizLessonActivity) {
         //For testing
-        //SharePreferenceHelper().clearLevelPreference(activity, Constants.REF_SENTENCE_PREFERENCE)
+        //SharePreferenceHelper.clearLevelPreference(activity, Constants.REF_SENTENCE_PREFERENCE)
 
-        mSentenceItems = SharePreferenceHelper().getSentenceReference(activity)
+        mSentenceItems = SharePreferenceHelper.getSentenceReference(activity)
         if (mSentenceItems.size == 0) {
             getSentenceListForQuiz(activity)
         } else {
@@ -103,7 +103,7 @@ class SentenceListener {
         }
 
 
-        mSentenceItems = SharePreferenceHelper().getSentenceReference(activity)
+        mSentenceItems = SharePreferenceHelper.getSentenceReference(activity)
         if (mSentenceItems.size == 0) {
             getSentenceListForQuiz(activity)
         } else {
@@ -121,7 +121,7 @@ class SentenceListener {
     @RequiresApi(Build.VERSION_CODES.M)
     private fun getSentenceListForQuiz(activity: QuizLessonActivity) {
         // >>> Sentence
-        Log.i("Get LEVEL_ID >>", Constants.LEVEL_ID.trim())
+        //Log.i("Get LEVEL_ID >>", Constants.LEVEL_ID.trim())
         mFireStore.collection(Constants.COLLECTION_SENTENCE)
            // .whereEqualTo("level_code", "L001")
             .orderBy("order_id")
@@ -144,7 +144,7 @@ class SentenceListener {
                     )
                     mSentenceItems.add(rowData)
                 }
-                Log.i("Get mSentenceItems >>", mSentenceItems.toString())
+                //Log.i("Get mSentenceItems >>", mSentenceItems.toString())
                 // Save to SharePreference
                 activity.saveSentenceToPreference(mSentenceItems)
                 activity.hideProgressDialog()

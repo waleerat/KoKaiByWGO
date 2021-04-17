@@ -6,11 +6,15 @@ import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.ActivityLearnAlphabetsBinding
 import com.wgoweb.kokaibywgo.models.AlphabetModel
 import com.wgoweb.kokaibywgo.ui.activities.BaseActivity
 import com.wgoweb.kokaibywgo.utils.Constants
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
 
@@ -45,9 +49,7 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
     override fun onResume() {
         super.onResume()
         mCurrentPosition = 0
-        if (mAlphabetItems.size > 0 ) {
-            getAlphabetItem()
-        }
+
 
     }
 
@@ -74,9 +76,8 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
                     enablePlayBackAndPlayNextButton("btnNextSound", true)
                     enabledAutoPlayButton()
                 }
+
             }
-
-
 
             R.id.btn_next_sound , R.id.iv_alphabet -> {
                 if (mCurrentPosition == mAlphabetItems.size-1 ) {
@@ -238,7 +239,7 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = Constants.LEARN_ALPHABET_TEXT
+        binding.tvTitle.text = resources.getString(R.string.menu_learn_alphabet)
 
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -246,10 +247,12 @@ class LearnAlphabetsActivity : BaseActivity(), View.OnClickListener {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_topbar_back_arrow)
         }
         binding.toolbarCustom.setNavigationOnClickListener {
-            if (restTimer != null) {
-                restTimer!!.cancel()
+            try {
+                if (restTimer != null) restTimer!!.cancel()
+            } catch (e: IOException) {
+                Log.d("toolbarCustom", e.printStackTrace().toString())
             }
-            stopSound()
+            //stopSound()
             onBackPressed()
         }
     }

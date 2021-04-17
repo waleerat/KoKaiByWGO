@@ -10,7 +10,7 @@
     <dimen name="progress_text_size">16sp</dimen>
     <!-- menu -->
     <dimen name="btn_menu_textSize">20dp</dimen>
-    <dimen name="sentence_textSize">20dp</dimen>
+    <dimen name="sentence_textSize">28dp</dimen>
     <dimen name="btn_menu_padding">18sp</dimen>
     <dimen name="btn_menu_height">60sp</dimen>
     <dimen name="btn_menu_level_height">60sp</dimen>

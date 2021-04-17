@@ -48,13 +48,9 @@ class AlphabetAndSoundActivity : BaseActivity(),View.OnClickListener {
                 startActivity(intent)
             }
 
-            R.id.btn_play_alphabet_sound -> {
-                speakOut(Constants.LEARN_ALPHABET_TEXT)
-            }
+            R.id.btn_play_alphabet_sound -> speakOut(resources.getString(R.string.menu_learn_alphabet))
 
-            R.id.btn_play_vowel_sound -> {
-                speakOut(Constants.LEARN_VOWEL_TEXT)
-            }
+            R.id.btn_play_vowel_sound -> speakOut(resources.getString(R.string.menu_learn_vowel))
         }
     }
 
@@ -129,7 +125,7 @@ class AlphabetAndSoundActivity : BaseActivity(),View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = Constants.LEARN_ALPHABET_AND_SOUND_TEXT
+        binding.tvTitle.text = resources.getString(R.string.menu_alphabet_and_vowel)
 
         val actionBar = supportActionBar
         if (actionBar != null) {

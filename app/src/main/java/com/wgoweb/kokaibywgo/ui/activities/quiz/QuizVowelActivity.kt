@@ -234,7 +234,7 @@ class QuizVowelActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = Constants.QUIZ_TEXT + Constants.LEARN_ALPHABET_TEXT
+        binding.tvTitle.text = resources.getString(R.string.menu_quiz_vowel)
 
         val actionBar = supportActionBar
         if (actionBar != null) {

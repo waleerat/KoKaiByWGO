@@ -2,6 +2,7 @@ package com.wgoweb.kokaibywgo.firebase
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.wgoweb.kokaibywgo.models.ChapterModel
 import com.wgoweb.kokaibywgo.models.SectionModel
@@ -18,6 +19,7 @@ class SplashScreenListener {
     var mChapterItems = ArrayList<ChapterModel>()
     var mSectionItems = ArrayList<SectionModel>()
     var mSentenceItems = ArrayList<SentenceModel>()
+    var mUpdateDataVersion = ""
 
     fun getAllDataFromFirestros(activity: SplashActivity){
 
@@ -28,31 +30,44 @@ class SplashScreenListener {
     }
 
     fun checkLevelSharePreference(activity: SplashActivity){
-        mLevelItems = SharePreferenceHelper().getLevelPreference(activity)
+        mLevelItems = SharePreferenceHelper.getLevelPreference(activity)
         if (mLevelItems.size == 0) {
             getLevelList(activity)
         }
     }
 
     fun checkChapterSharePreference(activity: SplashActivity){
-        mChapterItems = SharePreferenceHelper().getChapterReference(activity)
+        mChapterItems = SharePreferenceHelper.getChapterReference(activity)
         if (mChapterItems.size == 0) {
             getChapterList(activity)
         }
     }
 
     fun checkSectionSharePreference(activity: SplashActivity){
-        mSectionItems = SharePreferenceHelper().getSectionReference(activity)
+        mSectionItems = SharePreferenceHelper.getSectionReference(activity)
         if (mSectionItems.size == 0) {
             getSectionList(activity)
         }
     }
 
     fun checkSentenceSharePreference(activity: SplashActivity){
-        mSentenceItems = SharePreferenceHelper().getSentenceReference(activity)
+        mSentenceItems = SharePreferenceHelper.getSentenceReference(activity)
         if (mSentenceItems.size == 0) {
             getSentenceList(activity)
         }
+    }
+
+
+    fun getUpdateDataVersionFromFireStore(activity: SplashActivity){
+        mFireStore.collection(Constants.COLLECTION_UPDATED_VERSION)
+            .get() // Will get the documents snapshots.
+            .addOnSuccessListener { document ->
+                // A for loop as per the list of documents to convert them into levels ArrayList.
+                for (i in document.documents) {
+                    mUpdateDataVersion  = i.data?.get("version").toString()
+                }
+                activity.checkLastUpdatedDataVersion(mUpdateDataVersion)
+            }
     }
 
 

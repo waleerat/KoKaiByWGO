@@ -49,7 +49,7 @@ class SectionActivity : BaseActivity() {
     fun saveSectionToPreference(itemsList: ArrayList<SectionModel>) {
         if (itemsList.size > 0) {
             val jsonString = Gson().toJson(itemsList)
-            SharePreferenceHelper().setSharePreference(this@SectionActivity, Constants.REF_SECTION_PREFERENCE,jsonString )
+            SharePreferenceHelper.setSharePreference(this@SectionActivity, Constants.REF_SECTION_PREFERENCE,jsonString )
         }
     }
 

@@ -33,7 +33,7 @@ class SoundFromSentenceActivity : BaseActivity(), View.OnClickListener {
             }
 
             R.id.btn_learn_alphabet_play -> {
-                speakOut(Constants.SUGGEST_TO_TYPE_SENTENCE)
+                speakOut(resources.getString(R.string.speech_title))
             }
         }
     }

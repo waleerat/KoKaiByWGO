@@ -15,9 +15,9 @@ class SectionListener {
 
     fun getDataListItemForSectionActivity(activity: SectionActivity, chapterId: String) {
         //For testing
-        //SharePreferenceHelper().clearLevelPreference(activity, Constants.REF_SECTION_PREFERENCE)
+        //SharePreferenceHelper.clearLevelPreference(activity, Constants.REF_SECTION_PREFERENCE)
         mChapterCode = chapterId
-        mSectionItems = SharePreferenceHelper().getSectionReference(activity)
+        mSectionItems = SharePreferenceHelper.getSectionReference(activity)
         if (mSectionItems.size == 0) {
             getSectionList(activity, chapterId)
         } else {

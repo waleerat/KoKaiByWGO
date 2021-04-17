@@ -64,7 +64,7 @@ class AllVowelsActivity : BaseActivity() {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvVowelTitle.text = Constants.LEARN_VOWEL_TEXT
+        binding.tvVowelTitle.text = resources.getString(R.string.menu_learn_vowel)
 
         val actionBar = supportActionBar
         if (actionBar != null) {

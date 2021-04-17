@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.gms.maps.SupportMapFragment
 import com.google.gson.Gson
 import com.wgoweb.kokaibywgo.R
 import com.wgoweb.kokaibywgo.databinding.FragmentQuizBinding
+import com.wgoweb.kokaibywgo.databinding.FragmentSettingBinding
 import com.wgoweb.kokaibywgo.firebase.LevelListener
 import com.wgoweb.kokaibywgo.models.LevelModel
 import com.wgoweb.kokaibywgo.ui.activities.adapters.QuizFragmentAdapter
@@ -18,20 +20,20 @@ import java.util.ArrayList
 
 class QuizFragment : BaseFragment(), View.OnClickListener {
 
-    private lateinit var binding : FragmentQuizBinding
+    private var _binding: FragmentQuizBinding? = null
+    private val binding get() = _binding!!
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quiz, container, false)
+        _binding = FragmentQuizBinding.inflate(inflater, container, false)
+        return  binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        super.onViewCreated(view, savedInstanceState)
-        binding = FragmentQuizBinding.bind(view)
-
+        binding.btnSoundTitle.setOnClickListener(this)
         binding.btnMenuQuizAlphabets.setOnClickListener(this)
         binding.btnMenuQuizVowels.setOnClickListener(this)
         binding.btnQuizVowelPlay.setOnClickListener(this)
@@ -49,7 +51,7 @@ class QuizFragment : BaseFragment(), View.OnClickListener {
         //LevelListener().setLevelPreference(this.requireActivity(), itemsList)
         if (itemsList.size > 0) {
             val jsonString = Gson().toJson(itemsList)
-            SharePreferenceHelper().setSharePreference(this.requireActivity(), Constants.REF_LEVEL_PREFERENCE,jsonString )
+            SharePreferenceHelper.setSharePreference(this.requireActivity(), Constants.REF_LEVEL_PREFERENCE,jsonString )
         }
     }
 
@@ -90,18 +92,19 @@ class QuizFragment : BaseFragment(), View.OnClickListener {
                 startActivity(intent)
             }
 
-            R.id.btn_quiz_alphabet_play -> {
-                speakOut(Constants.QUIZ_ALPHABET_TEXT)
-            }
-            R.id.btn_quiz_vowel_play -> {
-                speakOut(Constants.QUIZ_VOWEL_TEXT)
-            }
-
-
+            R.id.btn_sound_title -> speakOut(resources.getString(R.string.menu_main_quiz))
+            R.id.btn_quiz_alphabet_play -> speakOut(resources.getString(R.string.menu_quiz_alphabet))
+            R.id.btn_quiz_vowel_play -> speakOut(resources.getString(R.string.menu_quiz_vowel))
         }
     }
 
+
     public interface OnClickListener {
         fun onClick(currentText: String)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

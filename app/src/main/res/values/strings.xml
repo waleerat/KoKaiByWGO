@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">KoKaiByWGO</string>
     <string name="title_activity_maps">Map</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome_text"> ก.ไก่ โดย WGO</string>
 
     <string name="please_wait">Please Wait ...</string>
     <string name="please_click_back_again_to_exit">Click again to exit</string>
@@ -56,7 +56,7 @@
     <string name="menu_sound_height">เสียงสูง</string>
     <string name="menu_sound_middle">เสียงกลาง</string>
     <string name="menu_sound_low">เสียงต่ำ</string>
-
+    <string name="quiz_prefix">ทดสอบ</string>
     <!--Speech-->
     <string name="speech_title">พิมพ์ประโยคที่ต้องการออกเสียง</string>
     <string name="speech_place_holder">พิมพ์ประโยค ..</string>

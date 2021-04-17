@@ -48,7 +48,7 @@ class ChapterActivity : BaseActivity() {
 
         if (itemsList.size > 0) {
             val jsonString = Gson().toJson(itemsList)
-                SharePreferenceHelper().setSharePreference(this@ChapterActivity, Constants.REF_CHAPTER_PREFERENCE,jsonString )
+                SharePreferenceHelper.setSharePreference(this@ChapterActivity, Constants.REF_CHAPTER_PREFERENCE,jsonString )
         }
     }
 
@@ -79,7 +79,7 @@ class ChapterActivity : BaseActivity() {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = Constants.LESSON_TEXT//mLevelName
+        binding.tvTitle.text = Constants.LESSON_TEXT
 
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -93,7 +93,6 @@ class ChapterActivity : BaseActivity() {
 
     public interface OnClickListener {
         fun onClick(currentText: String) {
-            Log.i("onClick >>", "function from Dapter")
         }
     }
 

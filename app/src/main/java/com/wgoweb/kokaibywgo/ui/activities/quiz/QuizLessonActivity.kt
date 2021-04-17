@@ -89,9 +89,11 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
 
         if (mSentenceItems.size == 0 ) {
             isEmptyQuiz = true
-            showErrorSnackBar(Constants.ERROR_EMPTY_QUIZ, true)
+            showErrorSnackBar(resources.getString(R.string.no_item_found), true)
             binding.parentQuizLesson.visibility = View.GONE
             finish()
+
+
         } else {
             isEmptyQuiz = false
             loadQuiz()
@@ -103,7 +105,7 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
     fun saveSentenceToPreference(itemsList: java.util.ArrayList<SentenceModel>) {
         if (itemsList.size > 0) {
             val jsonString = Gson().toJson(itemsList)
-            SharePreferenceHelper().setSharePreference(this@QuizLessonActivity, Constants.REF_SENTENCE_PREFERENCE,jsonString )
+            SharePreferenceHelper.setSharePreference(this@QuizLessonActivity, Constants.REF_SENTENCE_PREFERENCE,jsonString )
         }
     }
 
@@ -291,7 +293,7 @@ class QuizLessonActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = Constants.QUIZ_TEXT + Constants.LEARN_VOWEL_TEXT
+        binding.tvTitle.text = resources.getString(R.string.menu_main_quiz)
 
         val actionBar = supportActionBar
         if (actionBar != null) {

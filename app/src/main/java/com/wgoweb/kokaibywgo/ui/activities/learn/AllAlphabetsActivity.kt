@@ -61,7 +61,7 @@ class AllAlphabetsActivity : BaseActivity() {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvAlphabetTitle.text = Constants.LEARN_ALPHABET_TEXT
+        binding.tvAlphabetTitle.text =  resources.getString(R.string.menu_learn_alphabet)
 
         val actionBar = supportActionBar
         if (actionBar != null) {

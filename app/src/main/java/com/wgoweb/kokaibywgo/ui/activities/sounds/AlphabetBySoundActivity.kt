@@ -1,6 +1,7 @@
 package com.wgoweb.kokaibywgo.ui.activities.sounds
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -14,6 +15,8 @@ import com.wgoweb.kokaibywgo.models.AlphabetModel
 import com.wgoweb.kokaibywgo.models.VowelModel
 import com.wgoweb.kokaibywgo.ui.activities.BaseActivity
 import com.wgoweb.kokaibywgo.ui.activities.adapters.*
+import com.wgoweb.kokaibywgo.ui.activities.learn.AllAlphabetsActivity
+import com.wgoweb.kokaibywgo.ui.activities.lessons.ChapterActivity
 import com.wgoweb.kokaibywgo.utils.Constants
 import java.util.ArrayList
 
@@ -63,17 +66,23 @@ class AlphabetBySoundActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v!!.id) {
+            R.id.btn_menu_all_alphabets -> {
+                val intent = Intent(this@AlphabetBySoundActivity, AllAlphabetsActivity::class.java)
+
+                startActivity(intent)
+
+            }
+
             R.id.btn_play_alphabet_sound -> {
                 when (mSoundLevel) {
-                    "high" -> speakOut(Constants.SOUND_HIGH_TEXT)
-                    "mid" -> speakOut(Constants.SOUND_MIDDLE_TEXT)
-                    "low" -> speakOut(Constants.SOUND_LOW_TEXT)
+                    "high" -> speakOut(resources.getString(R.string.menu_sound_height))
+                    "mid" -> speakOut(resources.getString(R.string.menu_sound_middle))
+                    "low" -> speakOut(resources.getString(R.string.menu_sound_low))
                 }
             }
 
-            R.id.btn_play_alphabet_sound -> speakOut(Constants.LEARN_ALPHABET_TEXT)
-            R.id.btn_play_vowel_sound -> speakOut(Constants.LEARN_VOWEL_TEXT)
-
+            R.id.btn_play_alphabet_sound -> speakOut(resources.getString(R.string.menu_learn_alphabet))
+            R.id.btn_play_vowel_sound -> speakOut(resources.getString(R.string.menu_learn_vowel))
 
             R.id.btn_previous_sound -> {
                 if (mCurrentPosition > 0 ) {
@@ -137,13 +146,16 @@ class AlphabetBySoundActivity : BaseActivity(), View.OnClickListener {
             binding.rvAlphabetDataItems.visibility = View.VISIBLE
             binding.tvAlphabetNoItemsFound.visibility = View.GONE
 
-            val itemAlphabetAdapter = HorizontalAlphabetsSoundLevelAdapter(this, mAlphabetItems, object:
+            val itemAlphabetAdapter = HorizontalAlphabetsSoundLevelAdapter(this,mAlphabetItems,   object:
                 OnClickListener {
                 override fun onAlphabetClick(selectedItem: AlphabetModel) {
                     mCurrentPosition = 0
                     getVowelRecyclerView()
                 }
-            })
+
+                    override fun onVowelSoundClick(selectedVowelImage: Int) {}
+                })
+
             // adapter instance is set to the recyclerview to inflate the items.
             binding.rvAlphabetDataItems.layoutManager = LinearLayoutManager(this)
             binding.rvAlphabetDataItems.setHasFixedSize(true)
@@ -165,11 +177,39 @@ class AlphabetBySoundActivity : BaseActivity(), View.OnClickListener {
             binding.rvVowelDataItems.visibility = View.VISIBLE
             binding.rvVowelDataItems.layoutManager = LinearLayoutManager(this)
             binding.rvVowelDataItems.setHasFixedSize(true)
-            val itemAdapter = AlphabetBySoundActivityAdapter(this@AlphabetBySoundActivity, mVowelItems)
+            val itemAdapter = AlphabetBySoundActivityAdapter(
+                this@AlphabetBySoundActivity,
+                mVowelItems,
+                object : OnClickListener {
+                    override fun onAlphabetClick(selectedItem: AlphabetModel) {
+                    }
+
+                    override fun onVowelSoundClick(selectedVowelImage: Int) {
+                        getVowelItemPosition(selectedVowelImage)
+                    }
+                }
+            )
             // adapter instance is set to the recyclerview to inflate the items.
             binding.rvVowelDataItems.adapter = itemAdapter
         }
     }
+
+    fun getVowelItemPosition(selectedVowelImage: Int){
+        val tempPosition = mCurrentPosition
+        for ((position, item) in mVowelItems.withIndex()) {
+            if (item.image == selectedVowelImage) {
+                mCurrentPosition = position
+                getVowelWithFiveSoundLevels()
+                mCurrentPosition = tempPosition
+            }
+        }
+    }
+
+    interface OnClickListener {
+        fun onAlphabetClick(selectedItem: AlphabetModel)
+        fun onVowelSoundClick(selectedVowelImage: Int)
+    }
+
 
     fun getVowelWithFiveSoundLevels(){
         var vowelWithSoundLevelList: ArrayList<String> = ArrayList<String>()
@@ -201,7 +241,7 @@ class AlphabetBySoundActivity : BaseActivity(), View.OnClickListener {
                 setEnablePreviousAndNextSoundButton(false)
                 if (mVowelWithSoundLevelPosition <= vowelWithSoundLevelList.size-1) {
                     speakOut(vowelWithSoundLevelList[mVowelWithSoundLevelPosition])
-                    Log.i("SoundLevelPosition01 >>", vowelWithSoundLevelList[mVowelWithSoundLevelPosition])
+                    //Log.i("SoundLevelPosition01 >>", vowelWithSoundLevelList[mVowelWithSoundLevelPosition])
                     mVowelWithSoundLevelPosition++
                 }
             }
@@ -235,7 +275,6 @@ class AlphabetBySoundActivity : BaseActivity(), View.OnClickListener {
                     getVowelWithFiveSoundLevels()
                     // Play Sounds
                     getVowelWithFiveSoundLevels()
-
                     mCurrentPosition++
                     if (mCurrentPosition > mVowelItems.size-1) {
                         mCurrentPosition = 0
@@ -302,7 +341,7 @@ class AlphabetBySoundActivity : BaseActivity(), View.OnClickListener {
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarCustom)
-        binding.tvTitle.text = Constants.MENU_MAIN_HOME
+        binding.tvTitle.text = resources.getString(R.string.menu_main_home)
 
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -317,9 +356,5 @@ class AlphabetBySoundActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-    interface OnClickListener {
-        fun onAlphabetClick(selectedItem: AlphabetModel) {
 
-        }
-    }
 }

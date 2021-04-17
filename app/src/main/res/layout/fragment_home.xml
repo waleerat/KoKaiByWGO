@@ -13,15 +13,41 @@
         android:orientation="vertical"
         >
 
-        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
-            android:id="@+id/activity_title"
+
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/btn_menu_height"
+            android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="25sp"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/menu_main_home"/>
-        <!--START-->
+            android:orientation="horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp"
+            >
+
+            <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:textColor="@color/colorPrimary"
+                android:text="@string/menu_main_home"/>
+
+            <ImageButton
+                android:id="@+id/btn_sound_title"
+                android:layout_width="@dimen/btn_menu_icon_width"
+                android:layout_height="@dimen/btn_menu_icon_height"
+                android:background="@android:color/transparent"
+                android:contentDescription="Go next"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="8dp"
+                android:src="@drawable/sound_on"
+                android:scaleType="fitXY"/>
+        </LinearLayout>
+
+
+
+        <!--START btn_sound_high_play-->
         <!--Height Sound-->
         <LinearLayout
             android:layout_width="match_parent"

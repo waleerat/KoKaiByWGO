@@ -32,7 +32,17 @@
 
         </androidx.appcompat.widget.Toolbar>
         <!--END TOOLBAR-->
+        <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
+            android:id="@+id/activity_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/btn_menu_height"
+            android:gravity="center"
+            android:textSize="25sp"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/activity_header_sentence" />
+
         <LinearLayout
+            android:id="@+id/ll_sentence_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -40,14 +50,6 @@
             android:layout_marginLeft="-15dp"
             android:layout_marginRight="-15dp">
 
-            <com.wgoweb.kokaibywgo.utils.MSPTextViewBold
-                android:id="@+id/activity_title"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/btn_menu_height"
-                android:gravity="center"
-                android:textSize="25sp"
-                android:textColor="@color/colorPrimary"
-                android:text="@string/activity_header_sentence" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_view_items"
@@ -67,6 +69,25 @@
                 android:textAlignment="center"
                 android:textSize="@dimen/no_item_found_textSize" />
 
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_auto_sentence_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/button_background">
+            <TextView
+                android:id="@+id/tv_auto_sentence_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="45dp"
+                android:text="Sentence List"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
     <!--BOTTOM BUTTONS-->

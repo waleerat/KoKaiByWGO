@@ -9,33 +9,43 @@ import com.wgoweb.kokaibywgo.models.ChapterModel
 import com.wgoweb.kokaibywgo.models.LevelModel
 import com.wgoweb.kokaibywgo.models.SectionModel
 import com.wgoweb.kokaibywgo.models.SentenceModel
-import com.wgoweb.kokaibywgo.ui.fragments.LessonsFragment
-import com.wgoweb.kokaibywgo.ui.fragments.QuizFragment
 
-class SharePreferenceHelper {
+object SharePreferenceHelper {
 
-    fun setSharePreference(activity: Activity, preferenceName: String, jsonSting:String){
-       Log.i("SAVE-preferenceName >>", "SAVE !!")
+    private const val mAppNameReference = Constants.REF_APP_NAME_REFERENCE
 
-        if (jsonSting != "") {
+    fun setSharePreference(activity: Activity, preferenceName: String, referenceSting:String){
+        Log.i("SAVE-preferenceName >>", preferenceName)
+        if (referenceSting != "") {
             val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
-
-            editor.putString(preferenceName, jsonSting)
+            editor.putString(preferenceName, referenceSting)
             editor.apply()
+
         }
     }
     // Just for testing
     fun clearLevelPreference(activity: Activity, preferenceName: String){
+        Log.i("Clear-preferenceName >>", preferenceName)
         val settings: SharedPreferences =
             activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
         settings.edit().remove(preferenceName).commit()
     }
 
+
+    fun getUpdateDataVersion(activity: Activity): String {
+        val sharedPreferences =  activity.getSharedPreferences(mAppNameReference, Context.MODE_PRIVATE)
+        val updateVersion = sharedPreferences.getString(Constants.REF_UPDATED_DATA_VERSION, "Nan")!!
+
+        Log.i("getUpdateDataVersion >>", updateVersion)
+        return updateVersion
+    }
+
+
      fun getLevelPreference(activity: Activity) : ArrayList<LevelModel> {
         var returnItems = ArrayList<LevelModel>()
 
-        val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
+        val sharedPreferences =  activity.getSharedPreferences(mAppNameReference, Context.MODE_PRIVATE)
         val jsonString: String = sharedPreferences.getString(Constants.REF_LEVEL_PREFERENCE, "")!!
         // Log.i("getLevelPreference >>", jsonString)
         if (jsonString != "") {
@@ -50,7 +60,7 @@ class SharePreferenceHelper {
 
      fun getChapterReference(activity: Activity) : ArrayList<ChapterModel> {
         var returnItems = ArrayList<ChapterModel>()
-        val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
+        val sharedPreferences =  activity.getSharedPreferences(mAppNameReference, Context.MODE_PRIVATE)
          val jsonString: String = sharedPreferences.getString(Constants.REF_CHAPTER_PREFERENCE, "")!!
 
         // Log.i("getChapterReference >>", jsonString)
@@ -67,7 +77,7 @@ class SharePreferenceHelper {
      fun getSectionReference(activity: Activity) : ArrayList<SectionModel> {
         var returnItems = ArrayList<SectionModel>()
 
-        val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
+        val sharedPreferences =  activity.getSharedPreferences(mAppNameReference, Context.MODE_PRIVATE)
         val jsonString: String = sharedPreferences.getString(Constants.REF_SECTION_PREFERENCE, "")!!
          //Log.i("getSectionReference >>", jsonString)
         if (jsonString != "") {
@@ -83,7 +93,7 @@ class SharePreferenceHelper {
      fun getSentenceReference(activity: Activity) : ArrayList<SentenceModel> {
         var returnItems = ArrayList<SentenceModel>()
 
-        val sharedPreferences =  activity.getSharedPreferences(Constants.REF_APP_NAME_REFERENCE, Context.MODE_PRIVATE)
+        val sharedPreferences =  activity.getSharedPreferences(mAppNameReference, Context.MODE_PRIVATE)
         val jsonString: String = sharedPreferences.getString(Constants.REF_SENTENCE_PREFERENCE, "")!!
          //Log.i("getSentenceReference >>", jsonString)
         if (jsonString != "") {
